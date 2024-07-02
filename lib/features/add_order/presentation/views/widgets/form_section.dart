@@ -49,7 +49,7 @@ class FormsSection extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          Container(
+          SizedBox(
               width: size.width,
               height: size.height * 0.25,
               child: const AddImageScreen()),

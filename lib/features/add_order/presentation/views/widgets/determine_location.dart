@@ -67,6 +67,9 @@ class _DetermineLocationState extends State<DetermineLocation> {
   }
 
   Future<void> _determinePosition() async {
+    LocationPermission permission;
+   permission = await Geolocator.requestPermission();
+   
     position = await Geolocator.getCurrentPosition();
     _kGooglePlex = CameraPosition(
       target: LatLng(position!.latitude, position!.longitude),
