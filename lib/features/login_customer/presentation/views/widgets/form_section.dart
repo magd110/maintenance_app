@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:maintenance_app1/core/widgets/text_button.dart';
-import 'package:maintenance_app1/features/add_order/presentation/views/add_order.dart';
 import 'package:maintenance_app1/features/add_order/presentation/views/show_electrical.dart';
 import 'package:maintenance_app1/features/login_customer/presentation/views/widgets/login_text_field.dart';
 
-import '../../../../../core/widgets/custom_text_button.dart';
 import '../register_page.dart';
-import 'text_widget.dart';
 
 class FormSection extends StatefulWidget {
   const FormSection({
@@ -104,7 +101,7 @@ class _FormSectionState extends State<FormSection> {
                     if (keyForm.currentState!.validate()) {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => ShowElectrical(),
+                          builder: (context) => const ShowElectrical(),
                         ),
                       );
                       print("object0");
@@ -120,7 +117,7 @@ class _FormSectionState extends State<FormSection> {
               padding: const EdgeInsets.only(right: 50.0),
               child: Row(
                 children: [
-                  Text(
+                  const Text(
                     "لا تملك حساب؟ قم بإنشاء واحد هنا",
                     style: TextStyle(fontSize: 10.0),
                   ),
@@ -128,11 +125,11 @@ class _FormSectionState extends State<FormSection> {
                       onPressed: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => RegisterPage(),
+                            builder: (context) => const RegisterPage(),
                           ),
                         );
                       },
-                      child: Text(
+                      child: const Text(
                         "إنشاء حساب",
                         style: TextStyle(color: Colors.blue),
                       ))

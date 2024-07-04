@@ -4,8 +4,7 @@ import 'package:maintenance_app1/features/add_order/presentation/views/add_order
 import 'package:maintenance_app1/features/login_customer/presentation/views/login_page.dart';
 import 'package:maintenance_app1/features/login_customer/presentation/views/widgets/login_text_field.dart';
 
-import '../../../../../core/widgets/custom_text_button.dart';
-import 'text_widget.dart';
+
 
 class RegisterSection extends StatefulWidget {
   const RegisterSection({

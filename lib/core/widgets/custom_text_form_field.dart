@@ -18,7 +18,7 @@ class CustomTextFormFiled extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Container(
+    return SizedBox(
       width: size.width * sizee!,
       child: Expanded(
         child: TextFormField(
@@ -27,7 +27,7 @@ class CustomTextFormFiled extends StatelessWidget {
           decoration: InputDecoration(
               labelText: label,
               focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.blue, width: 2.0),
+                borderSide: const BorderSide(color: Colors.blue, width: 2.0),
                 borderRadius: BorderRadius.circular(8.0),
               ),
               border: option == false
