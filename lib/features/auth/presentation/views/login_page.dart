@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:maintenance_app1/features/auth/presentation/views/widgets/sign_form.dart';
 
-import 'widgets/register_section.dart';
-
-class RegisterPage extends StatelessWidget {
-  const RegisterPage({super.key});
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Directionality(
-        textDirection: TextDirection.rtl,
-        child: Scaffold(
-           appBar: AppBar(
+      textDirection: TextDirection.rtl,
+      child: Scaffold(
+        appBar: AppBar(
           centerTitle: true,
           automaticallyImplyLeading: false,
           title: Text(
@@ -30,7 +29,7 @@ class RegisterPage extends StatelessWidget {
             ),
           ),
         ),
-          body: Container(
+        body: Container(
             decoration: const BoxDecoration(
                 image: DecorationImage(
               fit: BoxFit.cover,
@@ -39,14 +38,8 @@ class RegisterPage extends StatelessWidget {
               ),
               opacity: 0.1,
             )),
-            child: ListView(
-              children: [
-                //const TextSection(),
-
-                const RegisterSection(),
-              ],
-            ),
-          ),
-        ));
+            child: const SignForm()),
+      ),
+    );
   }
 }

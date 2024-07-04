@@ -11,13 +11,36 @@ class SelectDay extends StatefulWidget {
 
 class _SelectDayState extends State<SelectDay> {
   final List<DayInWeek> _days = [
-    DayInWeek("أحد", dayKey: "sunday", ),
-    DayInWeek("إثنين", dayKey: "monday", ),
-    DayInWeek("ثلاثاء", dayKey: "tuesday", ),
-    DayInWeek("أربعاء", dayKey: "wednesday", ),
-    DayInWeek("خميس", dayKey: "thursday", ),
-    DayInWeek("جمعة", dayKey: "friday", isSelected: false, ),
-    DayInWeek("سبت", dayKey: "saturday", isSelected: false, ),
+    DayInWeek(
+      "أحد",
+      dayKey: "sunday",
+    ),
+    DayInWeek(
+      "إثنين",
+      dayKey: "monday",
+    ),
+    DayInWeek(
+      "ثلاثاء",
+      dayKey: "tuesday",
+    ),
+    DayInWeek(
+      "أربعاء",
+      dayKey: "wednesday",
+    ),
+    DayInWeek(
+      "خميس",
+      dayKey: "thursday",
+    ),
+    DayInWeek(
+      "جمعة",
+      dayKey: "friday",
+      isSelected: false,
+    ),
+    DayInWeek(
+      "سبت",
+      dayKey: "saturday",
+      isSelected: false,
+    ),
   ];
 
   @override

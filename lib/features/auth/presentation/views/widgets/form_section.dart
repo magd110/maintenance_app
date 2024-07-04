@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:maintenance_app1/core/widgets/text_button.dart';
 import 'package:maintenance_app1/features/add_order/presentation/views/show_electrical.dart';
-import 'package:maintenance_app1/features/login_customer/presentation/views/widgets/login_text_field.dart';
+import 'package:maintenance_app1/features/auth/presentation/views/widgets/login_text_field.dart';
 
 import '../register_page.dart';
 

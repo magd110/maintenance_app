@@ -6,6 +6,15 @@ class CustomError extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Center(child: Text(message,style: const TextStyle(color: Colors.red,fontWeight: FontWeight.bold,fontSize: 25,),),);
+    return Center(
+      child: Text(
+        message,
+        style: const TextStyle(
+          color: Colors.red,
+          fontWeight: FontWeight.bold,
+          fontSize: 25,
+        ),
+      ),
+    );
   }
 }
