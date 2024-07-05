@@ -14,7 +14,6 @@ class ApiService {
       required String name,
       required String email,
       required String password}) async {
-    
     var response = await _dio.post(
       '$_baseUrl$endPoint',
       data: {
@@ -23,7 +22,20 @@ class ApiService {
         "password": password,
       },
     );
-    print(response.data);
+    return response.data;
+  }
+
+  Future<Map<String, dynamic>> postForLogin(
+      {required String endPoint,
+      required String email,
+      required String password}) async {
+    var response = await _dio.post(
+      '$_baseUrl$endPoint',
+      data: {
+        "email": email,
+        "password": password,
+      },
+    );
     return response.data;
   }
 }

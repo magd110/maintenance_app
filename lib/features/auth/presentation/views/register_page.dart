@@ -1,9 +1,7 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:maintenance_app1/core/utils/api_service.dart';
 import 'package:maintenance_app1/core/utils/service_locator.dart';
-import 'package:maintenance_app1/features/auth/data/repos/register_repo_impl.dart';
+import 'package:maintenance_app1/features/auth/data/repos/register/register_repo_impl.dart';
 import 'package:maintenance_app1/features/auth/presentation/manager/register_cubit/register_cubit.dart';
 
 import 'widgets/register_section.dart';
@@ -46,9 +44,11 @@ class RegisterPage extends StatelessWidget {
               opacity: 0.1,
             )),
             child: ListView(
-              children:  [
+              children: [
                 BlocProvider(
-                  create: (context) => RegisterCubit(getIt.get<RegisterRepoImpl>(),),
+                  create: (context) => RegisterCubit(
+                    getIt.get<RegisterRepoImpl>(),
+                  ),
                   child: const RegisterSection(),
                 ),
               ],

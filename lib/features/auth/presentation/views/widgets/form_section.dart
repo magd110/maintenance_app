@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:maintenance_app1/core/utils/shared_preference_store.dart';
+import 'package:maintenance_app1/core/widgets/custom_error.dart';
+import 'package:maintenance_app1/core/widgets/custom_progress_indicator.dart';
 import 'package:maintenance_app1/core/widgets/text_button.dart';
 import 'package:maintenance_app1/features/add_order/presentation/views/show_electrical.dart';
+import 'package:maintenance_app1/features/auth/presentation/manager/login_cubit/login_cubit.dart';
 import 'package:maintenance_app1/features/auth/presentation/views/widgets/login_text_field.dart';
 
 import '../register_page.dart';
@@ -37,108 +42,102 @@ class _FormSectionState extends State<FormSection> {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
 
-    return Form(
-      key: keyForm,
-      child: Padding(
-        padding: const EdgeInsets.only(right: 8.0, left: 8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Center(
-            //   child: Padding(
-            //     padding: EdgeInsets.only(top: 5.0),
-            //     child: Text(
-            //       'Maintenance',
-            //       style: TextStyle(
-            //         fontSize: 35.0,
-            //         fontWeight: FontWeight.w700,
-            //         fontStyle: FontStyle.italic,
-            //         color: Colors.blue[800],
-            //         shadows: [
-            //           Shadow(
-            //             offset: Offset(2.0, 2.0),
-            //             blurRadius: 3.0,
-            //             color: Colors.grey[500]!,
-            //           ),
-            //         ],
-            //       ),
-            //     ),
-            //   ),
-            // ),
-            SizedBox(height: height * 0.5),
-            SizedBox(
-              width: width,
-              //  height: height * 0.2,
-              child: LoginTextField(
-                controller: emailController,
-                obscureText: false,
-                hintText: 'أدخل بريدك الإلكتروني',
-              ),
-            ),
-            SizedBox(
-              height: height * 0.01,
-            ),
-            SizedBox(
-              //  width: width * 0.3,
-              // height: screenHeight * 0.5,
-              child: LoginTextField(
-                hintText: 'أدخل كلمة المرور',
-                obscureText: true,
-                controller: passwordController,
-              ),
-            ),
-            SizedBox(
-              height: height * 0.05,
-            ),
-            Center(
-              child: SizedBox(
-                width: width * 0.5,
-                height: height * 0.08,
-                child: TextButtonn(
-                  backGroundColor: Colors.blue,
-                  label: 'تسجيل الدخول ',
-                  onPressed: () {
-                    if (keyForm.currentState!.validate()) {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => const ShowElectrical(),
-                        ),
-                      );
-                      print("object0");
-                      if (emailValidate()) {
-                        print("object");
-                      }
-                    }
-                  },
+    return BlocConsumer<LoginCubit, LoginState>(
+      builder: (context, state) => Form(
+        key: keyForm,
+        child: Padding(
+          padding: const EdgeInsets.only(right: 8.0, left: 8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: height * 0.5),
+              SizedBox(
+                width: width,
+                child: LoginTextField(
+                  controller: emailController,
+                  obscureText: false,
+                  hintText: 'أدخل بريدك الإلكتروني',
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(right: 50.0),
-              child: Row(
-                children: [
-                  const Text(
-                    "لا تملك حساب؟ قم بإنشاء واحد هنا",
-                    style: TextStyle(fontSize: 10.0),
-                  ),
-                  TextButton(
-                      onPressed: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => const RegisterPage(),
-                          ),
-                        );
-                      },
-                      child: const Text(
-                        "إنشاء حساب",
-                        style: TextStyle(color: Colors.blue),
-                      ))
-                ],
+              SizedBox(
+                height: height * 0.01,
               ),
-            )
-          ],
+              SizedBox(
+                //  width: width * 0.3,
+                // height: screenHeight * 0.5,
+                child: LoginTextField(
+                  hintText: 'أدخل كلمة المرور',
+                  obscureText: true,
+                  controller: passwordController,
+                ),
+              ),
+              SizedBox(
+                height: height * 0.05,
+              ),
+              if (state is LoginLoadingState) const CustomProgressIndicator(),
+              if (state is LoginFailureState)
+                CustomError(message: state.errorMessage),
+              Center(
+                child: SizedBox(
+                  width: width * 0.5,
+                  height: height * 0.08,
+                  child: TextButtonn(
+                    backGroundColor: Colors.blue,
+                    label: 'تسجيل الدخول ',
+                    onPressed: () async {
+                      if (keyForm.currentState!.validate()) {
+                        if (emailValidate()) {
+                          await BlocProvider.of<LoginCubit>(context).login(
+                            email: emailController.text,
+                            password: passwordController.text,
+                            endPoint: 'login',
+                          );
+                        }
+                      }
+                    },
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 50.0),
+                child: Row(
+                  children: [
+                    const Text(
+                      "لا تملك حساب؟ قم بإنشاء واحد هنا",
+                      style: TextStyle(fontSize: 10.0),
+                    ),
+                    TextButton(
+                        onPressed: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const RegisterPage(),
+                            ),
+                          );
+                        },
+                        child: const Text(
+                          "إنشاء حساب",
+                          style: TextStyle(color: Colors.blue),
+                        ))
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
+      listener: (BuildContext context, LoginState state) {
+        if (state is LoginSuccessState) {
+          if (state.loginModel.accessToken!.isNotEmpty) {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => const ShowElectrical(),
+              ),
+            );
+           
+            
+          }
+        }
+      },
     );
   }
 }

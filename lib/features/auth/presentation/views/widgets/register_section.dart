@@ -98,7 +98,6 @@ class _RegisterSectionState extends State<RegisterSection> {
                   CustomError(message: state.errorMessage),
                 if (state is RegisterLoadingState)
                   const CustomProgressIndicator(),
-                  
                 Center(
                   child: SizedBox(
                     width: width * 0.5,
@@ -117,7 +116,6 @@ class _RegisterSectionState extends State<RegisterSection> {
                               password: passwordController.text,
                               name: nameController.text,
                             );
-                            
                           }
                         }
                       },
@@ -147,25 +145,27 @@ class _RegisterSectionState extends State<RegisterSection> {
             ),
           ),
         );
-      }, listener: (BuildContext context, RegisterState state) { 
+      },
+      listener: (BuildContext context, RegisterState state) {
         if (state is RegisterSuccessState) {
-                              if (state.registerData.user!.role == "user") {
-                                showDialog(
-                                  context: context,
-                                  builder: (context) => AlertDialog(
-                                    content: const Text("تم تسجيل الحساب بنجاح "),
-                                    actions: [
-                                      TextButton(
-                                          onPressed: () {
-                                            Navigator.of(context).pop();
-                                          },
-                                          child: const Text("Ok"),),
-                                    ],
-                                  ),
-                                );
-                              }
-                            }
-       },
+          if (state.registerData.user!.role == "user") {
+            showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
+                content: const Text("تم تسجيل الحساب بنجاح "),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: const Text("Ok"),
+                  ),
+                ],
+              ),
+            );
+          }
+        }
+      },
     );
   }
 }

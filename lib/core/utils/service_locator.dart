@@ -2,7 +2,8 @@ import 'package:dio/dio.dart';
 
 import 'package:get_it/get_it.dart';
 import 'package:maintenance_app1/core/utils/api_service.dart';
-import 'package:maintenance_app1/features/auth/data/repos/register_repo_impl.dart';
+import 'package:maintenance_app1/features/auth/data/repos/login/login_repo_impl.dart';
+import 'package:maintenance_app1/features/auth/data/repos/register/register_repo_impl.dart';
 
 final getIt = GetIt.instance;
 
@@ -18,4 +19,6 @@ void setupServiceLocator() {
       getIt.get<ApiService>(),
     ),
   );
+
+  getIt.registerSingleton(LoginRepoImpl(getIt.get<ApiService>(),),);
 }

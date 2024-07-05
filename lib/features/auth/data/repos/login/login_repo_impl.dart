@@ -2,28 +2,26 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:maintenance_app1/core/errors/failures.dart';
 import 'package:maintenance_app1/core/utils/api_service.dart';
-import 'package:maintenance_app1/features/auth/data/models/register_data/register_data.dart';
-import 'package:maintenance_app1/features/auth/data/repos/register_repo.dart';
+import 'package:maintenance_app1/features/auth/data/models/login_model/login_model.dart';
+import 'package:maintenance_app1/features/auth/data/repos/login/login_repo.dart';
 
-class RegisterRepoImpl implements RegisterRepo {
+class LoginRepoImpl implements LoginRepo {
   final ApiService _apiService;
 
-  RegisterRepoImpl(this._apiService);
+  LoginRepoImpl(this._apiService);
   @override
-  Future<Either<Failure, RegisterData>> register(
-      {required String name,
-      required String email,
+  Future<Either<Failure, LoginModel>> login(
+      {required String email,
       required String password,
       required String endPoint}) async {
     try {
-      var data = await _apiService.postForRegister(
+      var data = await _apiService.postForLogin(
         endPoint: endPoint,
-        name: name,
         email: email,
         password: password,
       );
-      RegisterData registerData = RegisterData.fromJson(data);
-      return right(registerData);
+      LoginModel loginModel = LoginModel.fromJson(data);
+      return right(loginModel);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioError(e));

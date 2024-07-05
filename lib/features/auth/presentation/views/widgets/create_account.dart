@@ -11,9 +11,9 @@ class CreateAccount extends StatelessWidget {
     return Scaffold(
         body: Center(
       child: Row(children: [
-        Text(
+        const Text(
           "لا تملك حساب؟ قم بإنشاء واحد هنا",
-          style: TextStyle(fontSize: 10.0),
+          style: const TextStyle(fontSize: 10.0),
         ),
         SizedBox(
             width: size.width * 0.1,
@@ -23,7 +23,7 @@ class CreateAccount extends StatelessWidget {
                 label: 'إنشاء حساب',
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => AddOrder(),
+                    builder: (context) => const AddOrder(),
                   ));
                 }))
       ]),
