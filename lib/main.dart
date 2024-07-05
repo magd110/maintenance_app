@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maintenance_app1/core/utils/my_bloc_observer.dart';
+import 'package:maintenance_app1/core/utils/my_token.dart';
 import 'package:maintenance_app1/core/utils/service_locator.dart';
 import 'package:maintenance_app1/features/auth/presentation/views/login_page.dart';
 
-void main() {
+void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+ await initStorageToken();
   Bloc.observer = MyBlocObserver();
   setupServiceLocator();
   runApp(const MyApp());

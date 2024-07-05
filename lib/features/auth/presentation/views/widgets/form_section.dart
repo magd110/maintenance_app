@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:maintenance_app1/core/utils/shared_preference_store.dart';
+import 'package:maintenance_app1/core/utils/my_token.dart';
 import 'package:maintenance_app1/core/widgets/custom_error.dart';
 import 'package:maintenance_app1/core/widgets/custom_progress_indicator.dart';
 import 'package:maintenance_app1/core/widgets/text_button.dart';
@@ -125,7 +125,7 @@ class _FormSectionState extends State<FormSection> {
           ),
         ),
       ),
-      listener: (BuildContext context, LoginState state) {
+      listener: (BuildContext context, LoginState state) async{
         if (state is LoginSuccessState) {
           if (state.loginModel.accessToken!.isNotEmpty) {
             Navigator.of(context).push(
@@ -133,8 +133,7 @@ class _FormSectionState extends State<FormSection> {
                 builder: (context) => const ShowElectrical(),
               ),
             );
-           
-            
+           await setToken(token: state.loginModel.accessToken!);
           }
         }
       },
