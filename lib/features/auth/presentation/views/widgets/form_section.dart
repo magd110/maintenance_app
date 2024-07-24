@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:maintenance_app1/core/utils/my_token.dart';
 import 'package:maintenance_app1/core/widgets/custom_error.dart';
 import 'package:maintenance_app1/core/widgets/custom_progress_indicator.dart';
 import 'package:maintenance_app1/core/widgets/text_button.dart';
+import 'package:maintenance_app1/features/add_order/presentation/views/add_order.dart';
 import 'package:maintenance_app1/features/add_order/presentation/views/show_electrical.dart';
 import 'package:maintenance_app1/features/auth/presentation/manager/login_cubit/login_cubit.dart';
 import 'package:maintenance_app1/features/auth/presentation/views/widgets/login_text_field.dart';
@@ -86,13 +86,19 @@ class _FormSectionState extends State<FormSection> {
                     label: 'تسجيل الدخول ',
                     onPressed: () async {
                       if (keyForm.currentState!.validate()) {
-                        if (emailValidate()) {
-                          await BlocProvider.of<LoginCubit>(context).login(
-                            email: emailController.text,
-                            password: passwordController.text,
-                            endPoint: 'login',
+                         Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const  AddOrder(),
+                            ),
                           );
-                        }
+                       
+                        // if (emailValidate()) {
+                        //   await BlocProvider.of<LoginCubit>(context).login(
+                        //     email: emailController.text,
+                        //     password: passwordController.text,
+                        //     endPoint: 'login',
+                        //   );
+                        // }
                       }
                     },
                   ),
@@ -133,7 +139,7 @@ class _FormSectionState extends State<FormSection> {
                 builder: (context) => const ShowElectrical(),
               ),
             );
-           await setToken(token: state.loginModel.accessToken!);
+          // await setToken(token: state.loginModel.accessToken!);
           }
         }
       },

@@ -1,9 +1,10 @@
+import 'package:day_picker/day_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:maintenance_app1/core/widgets/custom_text_button.dart';
+import 'package:maintenance_app1/core/widgets/custom_text_form_field.dart';
 import 'package:maintenance_app1/core/widgets/text_button.dart';
+import 'package:maintenance_app1/features/add_order/presentation/views/widgets/add_image_screen.dart';
 import 'package:maintenance_app1/features/add_order/presentation/views/widgets/determine_location.dart';
-import 'package:maintenance_app1/features/add_order/presentation/views/widgets/form_section.dart';
-import 'package:maintenance_app1/features/add_order/presentation/views/widgets/select_day.dart';
 
 class AddOrderBody extends StatelessWidget {
   AddOrderBody({super.key});
@@ -16,6 +17,38 @@ class AddOrderBody extends StatelessWidget {
       TextEditingController();
   final TextEditingController _warrantyDurationController =
       TextEditingController();
+  final List<DayInWeek> _days = [
+    DayInWeek(
+      "أحد",
+      dayKey: "sunday",
+    ),
+    DayInWeek(
+      "إثنين",
+      dayKey: "monday",
+    ),
+    DayInWeek(
+      "ثلاثاء",
+      dayKey: "tuesday",
+    ),
+    DayInWeek(
+      "أربعاء",
+      dayKey: "wednesday",
+    ),
+    DayInWeek(
+      "خميس",
+      dayKey: "thursday",
+    ),
+    DayInWeek(
+      "جمعة",
+      dayKey: "friday",
+      isSelected: false,
+    ),
+    DayInWeek(
+      "سبت",
+      dayKey: "saturday",
+      isSelected: false,
+    ),
+  ];
 
   @override
   void dispose() {
@@ -72,18 +105,84 @@ class AddOrderBody extends StatelessWidget {
                   indent: 0,
                   endIndent: 0,
                 ),
-                FormsSection(
-                    nameController: _nameController,
-                    sizeController: _sizeController,
-                    warningsController: _warningsController,
-                    notesController: _notesController,
-                    howToUseController: _howToUseController,
-                    warrantyStatusController: _warrantyStatusController,
-                    warrantyDurationController: _warrantyDurationController),
+                Padding(
+                  padding: const EdgeInsets.only(right: 10.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      CustomTextFormFiled(
+                        sizee: 0.8,
+                        controller: _nameController,
+                        label: 'رقم الهاتف',
+                        option: false,
+                        keyboardType: TextInputType.phone,
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      SizedBox(
+                          width: size.width,
+                          height: size.height * 0.25,
+                          child: const AddImageScreen()),
+                      const SizedBox(height: 10),
+                      CustomTextFormFiled(
+                        sizee: 0.5,
+                        controller: _sizeController,
+                        label: 'تقاصيل الطلب ',
+                      ),
+
+                      const SizedBox(height: 10),
+                      CustomTextFormFiled(
+                        sizee: 0.7,
+                        controller: _notesController,
+                        label: 'ملاحظات',
+                      ),
+                      // const SizedBox(height: 10),
+                      // CustomTextFormFiled(
+                      //   sizee: 0.7,
+                      //   controller: _howToUseController,
+                      //   label: 'طريقة العمل',
+                      // ),
+                    ],
+                  ),
+                ),
                 SizedBox(
                     width: size.width,
                     height: size.height * 0.15,
-                    child: SelectDay()),
+                    child: Container(
+                      color: Colors.white,
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text('اختر اليوم المناسب لك:'),
+                            Center(
+                              child: Padding(
+                                padding: const EdgeInsets.all(4.0),
+                                child: SelectWeekDays(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                  days: _days,
+                                  boxDecoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(30.0),
+                                    gradient: LinearGradient(
+                                      begin: Alignment.topLeft,
+                                      // 10% of the width, so there are ten blinds.
+                                      colors: [
+                                        Colors.blue.shade300,
+                                        Colors.blue.shade700,
+                                      ], // whitish to gray
+                                      tileMode: TileMode
+                                          .repeated, // repeats the gradient over the canvas
+                                    ),
+                                  ),
+                                  onSelect: (values) {
+                                    print(values);
+                                  },
+                                ),
+                              ),
+                            ),
+                          ]),
+                    )),
                 Center(
                   child: SizedBox(
                     width: size.width * 0.2,
