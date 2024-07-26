@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:maintenance_app1/core/utils/shared_preference_store.dart';
 import 'package:maintenance_app1/core/widgets/custom_error.dart';
 import 'package:maintenance_app1/core/widgets/custom_progress_indicator.dart';
 import 'package:maintenance_app1/core/widgets/text_button.dart';
-import 'package:maintenance_app1/features/add_order/presentation/views/add_order.dart';
 import 'package:maintenance_app1/features/add_order/presentation/views/show_electrical.dart';
 import 'package:maintenance_app1/features/auth/presentation/manager/login_cubit/login_cubit.dart';
 import 'package:maintenance_app1/features/auth/presentation/views/widgets/login_text_field.dart';
@@ -86,19 +86,19 @@ class _FormSectionState extends State<FormSection> {
                     label: 'تسجيل الدخول ',
                     onPressed: () async {
                       if (keyForm.currentState!.validate()) {
-                         Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => const  AddOrder(),
-                            ),
+                        if (emailValidate()) {
+                          await BlocProvider.of<LoginCubit>(context).login(
+                            email: emailController.text,
+                            password: passwordController.text,
+                            endPoint: 'login',
                           );
-                       
-                        // if (emailValidate()) {
-                        //   await BlocProvider.of<LoginCubit>(context).login(
-                        //     email: emailController.text,
-                        //     password: passwordController.text,
-                        //     endPoint: 'login',
-                        //   );
-                        // }
+                          // ignore: use_build_context_synchronously
+                          //  Navigator.of(context).push(
+                          //   MaterialPageRoute(
+                          //     builder: (context) => const  AddOrder(),
+                          //   ),
+                          // );
+                        }
                       }
                     },
                   ),
@@ -131,15 +131,19 @@ class _FormSectionState extends State<FormSection> {
           ),
         ),
       ),
-      listener: (BuildContext context, LoginState state) async{
+      listener: (BuildContext context, LoginState state) async {
         if (state is LoginSuccessState) {
+           await prefs.setString(
+              'token',
+              state.loginModel.accessToken!
+            );
           if (state.loginModel.accessToken!.isNotEmpty) {
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) => const ShowElectrical(),
               ),
             );
-          // await setToken(token: state.loginModel.accessToken!);
+          
           }
         }
       },

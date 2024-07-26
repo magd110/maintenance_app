@@ -15,14 +15,18 @@ class LoginRepoImpl implements LoginRepo {
       required String password,
       required String endPoint}) async {
     try {
+     
       var data = await _apiService.postForLogin(
         endPoint: endPoint,
         email: email,
         password: password,
       );
+     
       LoginModel loginModel = LoginModel.fromJson(data);
+     
       return right(loginModel);
     } catch (e) {
+    
       if (e is DioException) {
         return left(ServerFailure.fromDioError(e));
       } else {

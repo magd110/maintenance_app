@@ -36,6 +36,22 @@ class ApiService {
         "password": password,
       },
     );
+
+    return response.data;
+  }
+
+  Future<dynamic> getElectric(
+      {required String endPoint, required String token}) async {
+   
+    var response = await _dio.get(
+      '$_baseUrl$endPoint',
+      options: Options(
+        headers: {
+          'Authorization': 'Bearer $token',
+        },
+      ),
+    );
+    
     return response.data;
   }
 }
