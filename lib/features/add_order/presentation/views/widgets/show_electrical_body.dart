@@ -9,9 +9,14 @@ class ShowElectricalBody extends StatelessWidget {
   const ShowElectricalBody({super.key});
 
   @override
+  onInit() {
+    print("object");
+  }
+
+  @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return BlocBuilder<ShowElectricCubit,ShowElectricState>(
+    return BlocBuilder<ShowElectricCubit, ShowElectricState>(
       builder: (context, state) {
         return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           SizedBox(
@@ -46,11 +51,22 @@ class ShowElectricalBody extends StatelessWidget {
           ),
           const Text("اختر الآلة التي تريد تقديم طلب صيانة لها "),
           Expanded(
-            child: state is ShowElectricSuccessState ? GridView.builder(
-             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,childAspectRatio: 1/1.2,crossAxisSpacing: 1,mainAxisSpacing: 1),
-              itemBuilder: (context, index) => BuildElectricalGrid(image: state.electric[index].photo!, name: state.electric[index].name!, size: state.electric[index].size!,) ,
-              itemCount: state.electric.length,
-            ) : const CustomProgressIndicator(),
+            child: state is ShowElectricSuccessState
+                ? GridView.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            childAspectRatio: 1 / 1.2,
+                            crossAxisSpacing: 1,
+                            mainAxisSpacing: 1),
+                    itemBuilder: (context, index) => BuildElectricalGrid(
+                      image: state.electric[index].photo!,
+                      name: state.electric[index].name!,
+                      size: state.electric[index].size!,
+                    ),
+                    itemCount: state.electric.length,
+                  )
+                : const CustomProgressIndicator(),
           ),
         ]);
       },

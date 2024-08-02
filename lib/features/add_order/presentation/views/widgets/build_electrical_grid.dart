@@ -24,12 +24,18 @@ class BuildElectricalGrid extends StatelessWidget {
               child: SizedBox(
                 width: 130,
                 height: 140,
-                child: CachedNetworkImage(
+                child: 
+                CachedNetworkImage(
                   fit: BoxFit.cover,
-                  imageUrl: 'http://192.168.1.106/fixx/$image',
-                  placeholder: (context, url) => const CustomProgressIndicator(),
-                  errorWidget: (context, url, error) => const Center(child: Icon(Icons.error_outline,color: Colors.red,),),
-                  
+                  imageUrl: 'http://192.168.1.107/fixx-master/$image',
+                  placeholder: (context, url) =>
+                      const CustomProgressIndicator(),
+                  errorWidget: (context, url, error) => const Center(
+                    child: Icon(
+                      Icons.error_outline,
+                      color: Colors.red,
+                    ),
+                  ),
                 ),
               ),
             ),
