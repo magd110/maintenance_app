@@ -6,17 +6,30 @@ import 'package:maintenance_app1/core/widgets/text_button.dart';
 import 'package:maintenance_app1/features/add_order/presentation/views/widgets/add_image_screen.dart';
 import 'package:maintenance_app1/features/add_order/presentation/views/widgets/determine_location.dart';
 
-class AddOrderBody extends StatelessWidget {
-  AddOrderBody({super.key});
+class AddOrderBody extends StatefulWidget {
+  const AddOrderBody({super.key});
+
+  @override
+  State<AddOrderBody> createState() => _AddOrderBodyState();
+}
+
+class _AddOrderBodyState extends State<AddOrderBody> {
   final TextEditingController _nameController = TextEditingController();
+
   final TextEditingController _sizeController = TextEditingController();
+
   final TextEditingController _warningsController = TextEditingController();
+
   final TextEditingController _notesController = TextEditingController();
+
   final TextEditingController _howToUseController = TextEditingController();
+
   final TextEditingController _warrantyStatusController =
       TextEditingController();
+
   final TextEditingController _warrantyDurationController =
       TextEditingController();
+
   final List<DayInWeek> _days = [
     DayInWeek(
       "أحد",
@@ -59,7 +72,7 @@ class AddOrderBody extends StatelessWidget {
     _howToUseController.dispose();
     _warrantyStatusController.dispose();
     _warrantyDurationController.dispose();
-    //  super.dispose();
+      super.dispose();
   }
 
   @override
@@ -67,7 +80,7 @@ class AddOrderBody extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Scaffold(
         body: Padding(
-      padding: EdgeInsets.all(4.0),
+      padding: const EdgeInsets.all(4.0),
       child: Container(
         width: size.width, // Set the desired width of the box
         height: size.height * 1, // Set the desired height of the box
@@ -87,7 +100,7 @@ class AddOrderBody extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Container(
-                  padding: EdgeInsets.all(10.0),
+                  padding: const EdgeInsets.all(10.0),
                   width: size.width * 0.6,
                   child: const Text(
                     //textDirection: TextDirection.ltr,
@@ -200,61 +213,12 @@ class AddOrderBody extends StatelessWidget {
                             builder: (context) => DetermineLocation(),
                           ),
                         );
-                        // if (keyForm.currentState!.validate()) {
-                        //   if (emailValidate()) {
-                        //     loginAdmin();
-                        //   }
-                        // }
+                       
                       },
                     ),
                   ),
                 ),
-                // Container(
-                //   padding: EdgeInsets.only(right: 9.0),
-                //   height: size.height * 0.08,
-                //   width: size.width * 0.15,
-                //   child: ElevatedButton(
-                //     onPressed: () async {
-                //       // if (_formKey.currentState!.validate()) {
-                //       //   if (_sizeController is String) {
-                //       //     showCustomAlertDialog(
-                //       //       context,
-                //       //       "!!!",
-                //       //       "the size must be integer",
-                //       //     );
-                //       //   } else {
-                //       //     String token = prefs.getString('token')!;
-                //       //     await BlocProvider.of<AddElectronicDeviceCubit>(
-                //       //             context)
-                //       //         .addNewElectronicDevice(
-                //       //       endPoint: "addelectrical",
-                //       //       token: token,
-                //       //       name: _nameController.text,
-                //       //       size: int.parse(_sizeController.text),
-                //       //       warning: _warningsController.text,
-                //       //       notes: _notesController.text,
-                //       //       wayOfWork: _howToUseController.text,
-                //       //       warranteState: _warrantyStatusController.text,
-                //       //       warantyDate: _warrantyDurationController.text,
-                //       //     );
-                //       //   }
-                //       // }
-                //     },
-                //     style: ElevatedButton.styleFrom(
-                //       shape: RoundedRectangleBorder(
-                //         borderRadius: BorderRadius.circular(4.0),
-                //       ),
-                //       backgroundColor: Colors.blue,
-                //       // padding: const EdgeInsets.symmetric(
-                //       //     horizontal: 50, vertical: 15),
-                //       textStyle: const TextStyle(fontSize: 18),
-                //     ),
-                //     child: const Text('إضافة الجهاز',
-                //         style: TextStyle(
-                //           color: Colors.white,
-                //         )),
-                //   ),
-                // ),
+                
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Center(

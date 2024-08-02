@@ -6,9 +6,9 @@ class ApiService {
   final Dio _dio;
 
   ApiService(this._dio);
-  final String _baseUrl = 'http://localhost:8000/api/';
+ 
 
-  //final String _baseUrl = 'http://127.0.0.1:8000/api/';
+  final String _baseUrl = 'http://10.0.2.2:8000/api/';
 
   Future<Map<String, dynamic>> postForRegister(
       {required String endPoint,
