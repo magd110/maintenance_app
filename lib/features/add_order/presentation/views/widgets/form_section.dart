@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:maintenance_app1/core/widgets/custom_text_form_field.dart';
-import 'package:maintenance_app1/features/add_order/presentation/views/widgets/add_image_screen.dart';
 
 class FormsSection extends StatelessWidget {
   const FormsSection({
@@ -49,10 +48,10 @@ class FormsSection extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          SizedBox(
-              width: size.width,
-              height: size.height * 0.25,
-              child: const AddImageScreen()),
+          // SizedBox(
+          //     width: size.width,
+          //     height: size.height * 0.25,
+          //     child: const AddImageScreen()),
           const SizedBox(height: 10),
           CustomTextFormFiled(
             sizee: 0.5,

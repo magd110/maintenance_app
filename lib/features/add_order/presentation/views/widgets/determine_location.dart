@@ -10,13 +10,8 @@ class DetermineLocation extends StatefulWidget {
 }
 
 class _DetermineLocationState extends State<DetermineLocation> {
-  /// Determine the current position of the device.
-  ///
-  /// When the location services are not enabled or permissions
-  /// are denied the `Future` will return an error.
-  ///
-  Position? position;
-  late final CameraPosition _kGooglePlex;
+   Position? position;
+    late final CameraPosition _kGooglePlex;
   Future<Position?> getCurrentLocationApp() async {
     bool serviceEnabled;
     LocationPermission permission;
@@ -67,6 +62,7 @@ class _DetermineLocationState extends State<DetermineLocation> {
   }
 
   Future<void> _determinePosition() async {
+  
     LocationPermission permission;
     permission = await Geolocator.requestPermission();
 
@@ -95,6 +91,7 @@ class _DetermineLocationState extends State<DetermineLocation> {
   late GoogleMapController mapController;
   @override
   Widget build(BuildContext context) {
+
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(

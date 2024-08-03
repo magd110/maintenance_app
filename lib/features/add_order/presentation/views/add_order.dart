@@ -8,7 +8,7 @@ class AddOrder extends StatelessWidget {
   Widget build(BuildContext context) {
     return Directionality(
       textDirection: TextDirection.rtl,
-      child: AddOrderBody(),
+      child: AddOrderBodyState(),
     );
   }
 }

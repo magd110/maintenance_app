@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maintenance_app1/core/widgets/custom_progress_indicator.dart';
 import 'package:maintenance_app1/features/add_order/presentation/manager/cubit/show_electric_cubit.dart';
-import 'package:maintenance_app1/features/add_order/presentation/views/widgets/add_order_body.dart';
 import 'package:maintenance_app1/features/add_order/presentation/views/widgets/build_electrical_grid.dart';
 import 'package:maintenance_app1/features/add_order/presentation/views/widgets/header_clipper.dart';
 
 class ShowElectricalBody extends StatelessWidget {
   const ShowElectricalBody({super.key});
+
+  @override
+  onInit() {
+    print("object");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,16 +59,10 @@ class ShowElectricalBody extends StatelessWidget {
                             childAspectRatio: 1 / 1.2,
                             crossAxisSpacing: 1,
                             mainAxisSpacing: 1),
-                    itemBuilder: (context, index) => InkWell(
-                      onTap: () {
-                       // state.electric[index].id
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const AddOrderBody(),),);
-                      },
-                      child: BuildElectricalGrid(
-                        image: state.electric[index].photo!,
-                        name: state.electric[index].name!,
-                        size: state.electric[index].size!,
-                      ),
+                    itemBuilder: (context, index) => BuildElectricalGrid(
+                      image: state.electric[index].photo!,
+                      name: state.electric[index].name!,
+                      size: state.electric[index].size!,
                     ),
                     itemCount: state.electric.length,
                   )
