@@ -26,23 +26,20 @@ class CustomTextFormFiled extends StatelessWidget {
           controller: controller,
           decoration: InputDecoration(
               labelText: label,
+              border: const OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: Colors.blue,
+                  width: 2.0,
+                ),
+              ),
               focusedBorder: OutlineInputBorder(
                 borderSide: const BorderSide(color: Colors.blue, width: 2.0),
                 borderRadius: BorderRadius.circular(8.0),
               ),
-              border: option == false
-                  ? const UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Colors.grey,
-                        width: 2.0,
-                      ),
-                    )
-                  : const OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Colors.grey,
-                        width: 2.0,
-                      ),
-                    ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: const BorderSide(color: Colors.blue, width: 2.0),
+                //borderRadius: BorderRadius.circular(8.0),
+              ),
               filled: true,
               fillColor: Colors.white),
           validator: (value) {
