@@ -2,6 +2,7 @@ import 'dart:typed_data';
 
 import 'package:day_picker/day_picker.dart';
 import 'package:dotted_border/dotted_border.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -27,6 +28,7 @@ class _AddOrderBodyState extends State<AddOrderBodyState> {
       TextEditingController();
   final TextEditingController _warrantyDurationController =
       TextEditingController();
+  String? myToken;
   XFile? image;
   Uint8List? imageBytes;
   Position? position;
@@ -142,9 +144,35 @@ class _AddOrderBodyState extends State<AddOrderBodyState> {
       isSelected: false,
     ),
   ];
+  void requesPermission() async {
+    FirebaseMessaging messaging = FirebaseMessaging.instance;
+    NotificationSettings settings = await messaging.requestPermission(
+      alert: true,
+      badge: true,
+      carPlay: false,
+      criticalAlert: false,
+      sound: true,
+      announcement: false,
+      provisional: false,
+    );
+    if (settings.authorizationStatus == AuthorizationStatus.authorized) {
+      print("User Granted permission");
+      //المستخدم اعطى صلاحية
+    }
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      print(
+          "title: ${message.notification?.title}|body:${message.notification?.body}");
+    });
+    FirebaseMessaging.instance.getToken().then((token) {
+      print("MyToken:${token}");
+      myToken = token;
+    });
+  }
+
   @override
   void initState() {
     _determinePosition();
+    requesPermission();
     // getCurrentLocationApp();
     super.initState();
   }
@@ -398,6 +426,7 @@ class _AddOrderBodyState extends State<AddOrderBodyState> {
                           onPressed: () {
                             print(position!.latitude);
                             print(position!.longitude);
+                            print(myToken);
                           },
                           backGroundColor: Colors.blue.shade700,
                         ),

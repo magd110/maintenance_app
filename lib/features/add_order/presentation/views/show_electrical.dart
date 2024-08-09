@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maintenance_app1/core/utils/my_token.dart';
@@ -16,8 +17,8 @@ class ShowElectrical extends StatefulWidget {
 }
 
 class _ShowElectricalState extends State<ShowElectrical> {
+ 
 
-  
   @override
   Widget build(BuildContext context) {
     return Directionality(
@@ -26,7 +27,9 @@ class _ShowElectricalState extends State<ShowElectrical> {
         body: BlocProvider(
           create: (context) =>
               ShowElectricCubit(getIt.get<ShowElectricRepoImpl>())
-                ..getElectrics(endPoint: 'showelectrical', token: prefs.getString('token')!),
+                ..getElectrics(
+                    endPoint: 'showelectrical',
+                    token: prefs.getString('token')!),
           child: const ShowElectricalBody(),
         ),
         backgroundColor: Colors.white,
