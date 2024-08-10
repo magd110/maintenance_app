@@ -20,34 +20,32 @@ class CustomTextFormFiled extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return SizedBox(
       width: size.width * sizee!,
-      child: Expanded(
-        child: TextFormField(
-          keyboardType: keyboardType,
-          controller: controller,
-          decoration: InputDecoration(
-              labelText: label,
-              border: const OutlineInputBorder(
-                borderSide: BorderSide(
-                  color: Colors.blue,
-                  width: 2.0,
-                ),
+      child: TextFormField(
+        keyboardType: keyboardType,
+        controller: controller,
+        decoration: InputDecoration(
+            labelText: label,
+            border: const OutlineInputBorder(
+              borderSide: BorderSide(
+                color: Colors.blue,
+                width: 2.0,
               ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: const BorderSide(color: Colors.blue, width: 2.0),
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderSide: const BorderSide(color: Colors.blue, width: 2.0),
-                //borderRadius: BorderRadius.circular(8.0),
-              ),
-              filled: true,
-              fillColor: Colors.white),
-          validator: (value) {
-            if (value!.isEmpty) {
-              return 'يرجى إدخال $label';
-            }
-          },
-        ),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: const BorderSide(color: Colors.blue, width: 2.0),
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+            enabledBorder: const OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.blue, width: 2.0),
+              //borderRadius: BorderRadius.circular(8.0),
+            ),
+            filled: true,
+            fillColor: Colors.white),
+        validator: (value) {
+          if (value!.isEmpty) {
+            return 'يرجى إدخال $label';
+          }
+        },
       ),
     );
   }

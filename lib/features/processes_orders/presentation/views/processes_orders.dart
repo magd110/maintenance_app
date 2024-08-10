@@ -7,6 +7,6 @@ class ProcessesOrders extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Directionality(child: ProcessesOrdersBody(),textDirection: TextDirection.rtl,);
+    return  Directionality(textDirection: TextDirection.rtl,child: ProcessesOrdersBody(),);
   }
 }

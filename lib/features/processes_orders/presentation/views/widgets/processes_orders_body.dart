@@ -17,7 +17,7 @@ class ProcessesOrdersBody extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Scaffold(
         body: Padding(
-            padding: EdgeInsets.all(4.0),
+            padding: const EdgeInsets.all(4.0),
             child: Container(
                 width: size.width, // Set the desired width of the box
                 height: size.height * 1, // Set the desired height of the box

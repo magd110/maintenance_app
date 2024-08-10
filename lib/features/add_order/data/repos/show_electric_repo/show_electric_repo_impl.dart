@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:maintenance_app1/core/errors/failures.dart';
 import 'package:maintenance_app1/core/utils/api_service.dart';
 import 'package:maintenance_app1/features/add_order/data/models/electrics_model/electrics_model.dart';
-import 'package:maintenance_app1/features/add_order/data/repos/show_electric_repo.dart';
+import 'package:maintenance_app1/features/add_order/data/repos/show_electric_repo/show_electric_repo.dart';
 
 class ShowElectricRepoImpl implements ShowElectricRepo {
   final ApiService _apiService;

@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:maintenance_app1/features/add_order/data/models/electrics_model/electrics_model.dart';
-import 'package:maintenance_app1/features/add_order/data/repos/show_electric_repo.dart';
+import 'package:maintenance_app1/features/add_order/data/repos/show_electric_repo/show_electric_repo.dart';
 
 part 'show_electric_state.dart';
 
