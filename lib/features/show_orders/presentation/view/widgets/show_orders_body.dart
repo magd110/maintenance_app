@@ -4,9 +4,15 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:maintenance_app1/features/add_order/presentation/views/widgets/header_clipper.dart';
 
-class ShowOrdersBody extends StatelessWidget {
-  ShowOrdersBody({super.key});
-  // @override
+class ShowOrdersBody extends StatefulWidget {
+  const ShowOrdersBody({super.key});
+
+  @override
+  State<ShowOrdersBody> createState() => _ShowOrdersBodyState();
+}
+
+class _ShowOrdersBodyState extends State<ShowOrdersBody> {
+
 
   var suburb;
   var name;
@@ -40,7 +46,7 @@ class ShowOrdersBody extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
+          SizedBox(
             width: size.width,
             height: size.height * 0.2,
             child: ClipPath(
@@ -57,7 +63,7 @@ class ShowOrdersBody extends StatelessWidget {
                       color: Colors.blue[800],
                       shadows: [
                         Shadow(
-                          offset: Offset(2.0, 2.0),
+                          offset: const Offset(2.0, 2.0),
                           blurRadius: 3.0,
                           color: Colors.grey[500]!,
                         ),
@@ -70,8 +76,8 @@ class ShowOrdersBody extends StatelessWidget {
               //   children: [
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(right: 20.0),
+          const Padding(
+            padding: EdgeInsets.only(right: 20.0),
             child: Icon(
               FontAwesomeIcons.wrench, // أيقونة الصيانة
               size: 24.0,
@@ -94,10 +100,10 @@ class ShowOrdersBody extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Column(
+                      const Column(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(right: 4.0),
+                            padding: EdgeInsets.only(right: 4.0),
                             child: Text(
                               "2023-07-31 14:30:00",
                               style: TextStyle(
@@ -122,7 +128,7 @@ class ShowOrdersBody extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Column(
+                            const Column(
                               children: [
                                 Icon(
                                   Icons.location_on_outlined,
@@ -143,7 +149,7 @@ class ShowOrdersBody extends StatelessWidget {
                               width: 2.0, // تحديد العرض المطلوب
                               height: 50.0, // تحديد الارتفاع المطلوب
                             ),
-                            Column(
+                            const Column(
                               children: [
                                 Icon(
                                   Icons.phone_android_outlined,
@@ -169,7 +175,7 @@ class ShowOrdersBody extends StatelessWidget {
             ],
           ),
           TextButton(
-              child: Text("dataa"),
+              child: const Text("dataa"),
               onPressed: () async {
                 print("object");
                 await getReverseGeocoding(33.4397141, 36.1626865);

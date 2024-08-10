@@ -10,12 +10,7 @@ class ProcessesOrdersBody extends StatelessWidget {
       TextEditingController();
   final TextEditingController repairsController = TextEditingController();
   final TextEditingController requestStateController = TextEditingController();
-  @override
-  void dispose() {
-    consumablePartsController.dispose();
-    repairsController.dispose();
-    requestStateController.dispose();
-  }
+  
 
   @override
   Widget build(BuildContext context) {
