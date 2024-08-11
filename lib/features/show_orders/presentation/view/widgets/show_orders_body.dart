@@ -3,9 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:maintenance_app1/core/utils/service_locator.dart';
 import 'package:maintenance_app1/core/widgets/custom_error.dart';
 import 'package:maintenance_app1/core/widgets/custom_progress_indicator.dart';
 import 'package:maintenance_app1/features/add_order/presentation/views/widgets/header_clipper.dart';
+import 'package:maintenance_app1/features/processes_orders/data/repos/update_request_by_worker_repo_impl.dart';
+import 'package:maintenance_app1/features/processes_orders/presentation/manager/cubit/update_request_by_worker_cubit.dart';
 import 'package:maintenance_app1/features/processes_orders/presentation/views/processes_orders.dart';
 import 'package:maintenance_app1/features/show_orders/presentation/manager/cubit/show_order_cubit.dart';
 
@@ -92,7 +95,13 @@ class _ShowOrdersBodyState extends State<ShowOrdersBody> {
                       itemBuilder: (context, index) => InkWell(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const ProcessesOrders(),
+                            builder: (context) => BlocProvider(
+                              create: (context) => UpdateRequestByWorkerCubit(getIt.get<UpdateRequestByWorkerRepoImpl>()),
+                              child: ProcessesOrders(
+                                id: state.showOrdersModel
+                                    .maintenanceRequests![index].id!,
+                              ),
+                            ),
                           ));
                         },
                         child: Padding(

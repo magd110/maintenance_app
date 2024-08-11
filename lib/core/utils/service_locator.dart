@@ -7,6 +7,7 @@ import 'package:maintenance_app1/features/add_order/data/repos/store_request_by_
 import 'package:maintenance_app1/features/auht_worker/data/repos/login_for_worker_repo_impl.dart';
 import 'package:maintenance_app1/features/auth/data/repos/login/login_repo_impl.dart';
 import 'package:maintenance_app1/features/auth/data/repos/register/register_repo_impl.dart';
+import 'package:maintenance_app1/features/processes_orders/data/repos/update_request_by_worker_repo_impl.dart';
 import 'package:maintenance_app1/features/show_orders/data/repos/show_orders_repo_impl.dart';
 
 final getIt = GetIt.instance;
@@ -49,6 +50,13 @@ void setupServiceLocator() {
 
   getIt.registerSingleton(
     ShowOrdersRepoImpl(
+      getIt.get<ApiService>(),
+    ),
+  );
+
+
+  getIt.registerSingleton(
+    UpdateRequestByWorkerRepoImpl(
       getIt.get<ApiService>(),
     ),
   );

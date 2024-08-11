@@ -94,7 +94,6 @@ class ApiService {
     return response.data;
   }
 
-
   Future<Map<String, dynamic>> postForLoginWorker(
       {required String endPoint,
       required String email,
@@ -110,8 +109,6 @@ class ApiService {
     return response.data;
   }
 
-
-  
   Future<dynamic> showOrders(
       {required String endPoint, required String token}) async {
     var response = await _dio.get(
@@ -126,5 +123,27 @@ class ApiService {
     return response.data;
   }
 
+  Future<Map<String, dynamic>> updateRequestByWorker({
+    required String endPoint,
+    required String token,
+    required String consumableParts,
+    required String repairs,
+    required int id,
+  }) async {
+    var response = await _dio.post(
+      '$_baseUrl$endPoint',
+      data: {
+        "consumable_parts": consumableParts,
+        "repairs": repairs,
+        "id":id
+      },
+       options: Options(
+        headers: {
+          'Authorization': 'Bearer $token',
+        },
+      ),
+    );
 
+    return response.data;
+  }
 }
