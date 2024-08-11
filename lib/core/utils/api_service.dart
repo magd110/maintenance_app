@@ -93,4 +93,38 @@ class ApiService {
 
     return response.data;
   }
+
+
+  Future<Map<String, dynamic>> postForLoginWorker(
+      {required String endPoint,
+      required String email,
+      required String password}) async {
+    var response = await _dio.post(
+      '$_baseUrl$endPoint',
+      data: {
+        "email": email,
+        "password": password,
+      },
+    );
+
+    return response.data;
+  }
+
+
+  
+  Future<dynamic> showOrders(
+      {required String endPoint, required String token}) async {
+    var response = await _dio.get(
+      '$_baseUrl$endPoint',
+      options: Options(
+        headers: {
+          'Authorization': 'Bearer $token',
+        },
+      ),
+    );
+
+    return response.data;
+  }
+
+
 }

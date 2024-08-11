@@ -123,7 +123,7 @@ class _FormSectionState extends State<FormSection> {
                         child: const Text(
                           "إنشاء حساب",
                           style: TextStyle(color: Colors.blue),
-                        ))
+                        ),)
                   ],
                 ),
               )
@@ -138,6 +138,7 @@ class _FormSectionState extends State<FormSection> {
               state.loginModel.accessToken!
             );
           if (state.loginModel.accessToken!.isNotEmpty) {
+            // ignore: use_build_context_synchronously
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) => const ShowElectrical(),
