@@ -4,9 +4,9 @@ import 'package:maintenance_app1/core/utils/shared_preference_store.dart';
 import 'package:maintenance_app1/core/widgets/custom_error.dart';
 import 'package:maintenance_app1/core/widgets/custom_progress_indicator.dart';
 import 'package:maintenance_app1/core/widgets/text_button.dart';
-import 'package:maintenance_app1/features/add_order/presentation/views/show_electrical.dart';
 import 'package:maintenance_app1/features/auth/presentation/manager/login_cubit/login_cubit.dart';
 import 'package:maintenance_app1/features/auth/presentation/views/widgets/login_text_field.dart';
+import 'package:maintenance_app1/features/home_page/presentation/views/home_page.dart';
 
 import '../register_page.dart';
 
@@ -141,7 +141,7 @@ class _FormSectionState extends State<FormSection> {
             // ignore: use_build_context_synchronously
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => const ShowElectrical(),
+                builder: (context) => const HomePage(),
               ),
             );
           
