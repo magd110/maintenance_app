@@ -6,7 +6,7 @@ import 'package:maintenance_app1/core/widgets/custom_progress_indicator.dart';
 import 'package:maintenance_app1/core/widgets/text_button.dart';
 import 'package:maintenance_app1/features/auth/presentation/manager/login_cubit/login_cubit.dart';
 import 'package:maintenance_app1/features/auth/presentation/views/widgets/login_text_field.dart';
-import 'package:maintenance_app1/features/home_page/presentation/views/home_page.dart';
+import 'package:maintenance_app1/features/home_page_for_customer/presentation/views/home_page_for_customer.dart';
 
 import '../register_page.dart';
 
@@ -139,7 +139,7 @@ class _FormSectionState extends State<FormSection> {
             // ignore: use_build_context_synchronously
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(
-                builder: (context) => const HomePage(),
+                builder: (context) => const HomePageForCustomer(),
               ),
             );
           }

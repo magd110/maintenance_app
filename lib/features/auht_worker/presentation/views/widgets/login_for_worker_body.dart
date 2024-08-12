@@ -5,6 +5,7 @@ import 'package:maintenance_app1/core/widgets/custom_error.dart';
 import 'package:maintenance_app1/core/widgets/custom_progress_indicator.dart';
 import 'package:maintenance_app1/core/widgets/text_button.dart';
 import 'package:maintenance_app1/features/auht_worker/presentation/manager/cubit/login_for_worker_cubit.dart';
+import 'package:maintenance_app1/features/home_page_for_worker/presentation/views/home_page_for_worker.dart';
 import 'package:maintenance_app1/features/processes_orders/presentation/views/processes_orders.dart';
 import 'package:maintenance_app1/features/show_orders/presentation/view/show_ordres.dart';
 
@@ -167,7 +168,7 @@ class _LoginForWorkerBodyState extends State<LoginForWorkerBody> {
             // ignore: use_build_context_synchronously
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(
-                builder: (context) => const ShowOrdresPage(),
+                builder: (context) => const HomePageForWorker(),
               ),
             );
           }

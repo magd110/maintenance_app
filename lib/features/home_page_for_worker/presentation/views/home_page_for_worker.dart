@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:maintenance_app1/features/add_order/presentation/views/show_electrical.dart';
-import 'package:maintenance_app1/features/home_page/presentation/views/widgets/test_widget.dart';
+import 'package:maintenance_app1/features/home_page_for_customer/presentation/views/widgets/test_widget.dart';
+import 'package:maintenance_app1/features/show_orders/presentation/view/show_ordres.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class HomePageForWorker extends StatefulWidget {
+  const HomePageForWorker({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<HomePageForWorker> createState() => _HomePageForWorkerState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageForWorkerState extends State<HomePageForWorker> {
   late PersistentTabController _controller;
   ScrollController _scrollController1 = ScrollController();
   ScrollController _scrollController2 = ScrollController();
   List<Widget> _buildScreens() {
-    return [const ShowElectrical(), const TestingWidget()];
+    return [const ShowOrdresPage(), const TestingWidget()];
   }
 
   List<PersistentBottomNavBarItem> _navBarsItems() {
@@ -29,7 +30,7 @@ class _HomePageState extends State<HomePage> {
         routeAndNavigatorSettings: RouteAndNavigatorSettings(
           initialRoute: "/",
           routes: {
-            "/first": (final context) => const ShowElectrical(),
+            "/first": (final context) => const ShowOrdresPage(),
             "/second": (final context) => const TestingWidget(),
           },
         ),
