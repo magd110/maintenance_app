@@ -113,17 +113,18 @@ class _FormSectionState extends State<FormSection> {
                       style: TextStyle(fontSize: 10.0),
                     ),
                     TextButton(
-                        onPressed: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => const RegisterPage(),
-                            ),
-                          );
-                        },
-                        child: const Text(
-                          "إنشاء حساب",
-                          style: TextStyle(color: Colors.blue),
-                        ),)
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const RegisterPage(),
+                          ),
+                        );
+                      },
+                      child: const Text(
+                        "إنشاء حساب",
+                        style: TextStyle(color: Colors.blue),
+                      ),
+                    )
                   ],
                 ),
               )
@@ -133,18 +134,14 @@ class _FormSectionState extends State<FormSection> {
       ),
       listener: (BuildContext context, LoginState state) async {
         if (state is LoginSuccessState) {
-           await prefs.setString(
-              'token',
-              state.loginModel.accessToken!
-            );
+          await prefs.setString('token', state.loginModel.accessToken!);
           if (state.loginModel.accessToken!.isNotEmpty) {
             // ignore: use_build_context_synchronously
-            Navigator.of(context).push(
+            Navigator.of(context).pushReplacement(
               MaterialPageRoute(
                 builder: (context) => const HomePage(),
               ),
             );
-          
           }
         }
       },

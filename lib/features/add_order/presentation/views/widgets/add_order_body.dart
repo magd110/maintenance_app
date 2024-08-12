@@ -331,51 +331,73 @@ class _AddOrderBodyState extends State<AddOrderBodyState> {
                             ),
                           ),
                         ),
-                       state is StoreRequestByUserLoadingState ? const CustomProgressIndicator() : Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Center(
-                            child: SizedBox(
-                              width: size.width * 0.5,
-                              height: size.height * 0.1,
-                              child: TextButtonn(
-                                label: "إرسال طلب الصيانة",
-                                onPressed: () async {
-                                  if (position != null &&
-                                      daysController.text.isNotEmpty &&
-                                      phoneNumberController.text.isNotEmpty &&
-                                      notesController.text.isNotEmpty &&
-                                      detailsController.text.isNotEmpty &&
-                                      image != null) {
-                                    BlocProvider.of<StoreRequestByUserCubit>(
-                                            context)
-                                        .storeRequest(
-                                            image: image!,
-                                            latitude: position!.latitude,
-                                            longitude: position!.longitude,
-                                            phoneNumber:
-                                                phoneNumberController.text,
-                                            details: detailsController.text,
-                                            notes: notesController.text,
-                                            days: daysController.text,
-                                            id: widget.id,
-                                            endPoint: 'storeRequestByUser',
-                                            token: prefs.getString('token')!);
-                                  }
-                                },
-                                backGroundColor: Colors.blue.shade700,
+                        state is StoreRequestByUserLoadingState
+                            ? const CustomProgressIndicator()
+                            : Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Center(
+                                  child: SizedBox(
+                                    width: size.width * 0.5,
+                                    height: size.height * 0.1,
+                                    child: TextButtonn(
+                                      label: "إرسال طلب الصيانة",
+                                      onPressed: () async {
+                                       
+                                        if (position != null &&
+                                            daysController.text.isNotEmpty &&
+                                            phoneNumberController
+                                                .text.isNotEmpty &&
+                                            notesController.text.isNotEmpty &&
+                                            detailsController.text.isNotEmpty &&
+                                            image != null) {
+                                          BlocProvider.of<StoreRequestByUserCubit>(
+                                                  context)
+                                              .storeRequest(
+                                                  image: image!,
+                                                  latitude: position!.latitude,
+                                                  longitude:
+                                                      position!.longitude,
+                                                  phoneNumber:
+                                                      phoneNumberController
+                                                          .text,
+                                                  details:
+                                                      detailsController.text,
+                                                  notes: notesController.text,
+                                                  days: daysController.text,
+                                                  id: widget.id,
+                                                  endPoint:
+                                                      'storeRequestByUser',
+                                                  token: prefs
+                                                      .getString('token')!);
+                                        }
+                                      },
+                                      backGroundColor: Colors.blue.shade700,
+                                    ),
+                                  ),
+                                ),
                               ),
-                              
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        if (state is StoreRequestByUserSuccessState)
+                          Center(
+                            child: Text(
+                              state.storeRequestByUserModel.message!,
+                              style: const TextStyle(
+                                color: Colors.green,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
-                        ),
-                        const SizedBox(height: 5,),
-                        if(state is StoreRequestByUserSuccessState)
-                        Center(
-                          child: Text(state.storeRequestByUserModel
-                          .message!,style: const TextStyle(color: Colors.green,fontWeight: FontWeight.bold,),),
-                        ),
-                        if(state is StoreRequestByUserFailureState)
-                        Center(child: Text(state.errorMessage,style: const TextStyle(color: Colors.red,fontWeight: FontWeight.bold,),))
+                        if (state is StoreRequestByUserFailureState)
+                          Center(
+                              child: Text(
+                            state.errorMessage,
+                            style: const TextStyle(
+                              color: Colors.red,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ))
                       ],
                     ),
                   ),

@@ -162,10 +162,10 @@ class _LoginForWorkerBodyState extends State<LoginForWorkerBody> {
         if (state is LoginForWorkerSuccessState) {
           bool result = await prefs.setString(
               'token_worker', state.loginForWorkerModel.accessToken!);
-          
+
           if (state.loginForWorkerModel.accessToken!.isNotEmpty) {
             // ignore: use_build_context_synchronously
-            Navigator.of(context).push(
+            Navigator.of(context).pushReplacement(
               MaterialPageRoute(
                 builder: (context) => const ShowOrdresPage(),
               ),
