@@ -20,24 +20,33 @@ class ShowOrdersBody extends StatefulWidget {
 }
 
 class _ShowOrdersBodyState extends State<ShowOrdersBody> {
-  Future<String> getReverseGeocoding(double latitude, double longitude) async {
+  Future<String> getReverseGeocoding(String latitude, String longitude) async {
     final url = Uri.parse(
         'https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=$latitude&lon=$longitude');
     final response = await http.get(url);
 
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body) as Map<String, dynamic>;
-
       final displayName = data['display_name'] as String;
       final addressParts = displayName.split(', ');
       String name = addressParts[0];
       String suburb = addressParts[1];
       String street = addressParts[2];
-
+      print("+++++++++++++++");
+      print('$name, $suburb, $street');
+      print("+++++++++++++++");
       return '$name, $suburb, $street';
     } else {
       throw Exception('Failed to fetch address');
     }
+  }
+
+  @override
+  @override
+  void initState() {
+    // TODO: implement initState
+    getReverseGeocoding('33.5167', '36.3167');
+    super.initState();
   }
 
   @override
@@ -96,7 +105,8 @@ class _ShowOrdersBodyState extends State<ShowOrdersBody> {
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => BlocProvider(
-                              create: (context) => UpdateRequestByWorkerCubit(getIt.get<UpdateRequestByWorkerRepoImpl>()),
+                              create: (context) => UpdateRequestByWorkerCubit(
+                                  getIt.get<UpdateRequestByWorkerRepoImpl>()),
                               child: ProcessesOrders(
                                 id: state.showOrdersModel
                                     .maintenanceRequests![index].id!,
@@ -163,14 +173,14 @@ class _ShowOrdersBodyState extends State<ShowOrdersBody> {
                                           ),
                                           FutureBuilder(
                                             future: getReverseGeocoding(
-                                                double.parse(state
+                                                state
                                                     .showOrdersModel
                                                     .maintenanceRequests![index]
-                                                    .latitude!),
-                                                double.parse(state
+                                                    .latitude!,
+                                                state
                                                     .showOrdersModel
                                                     .maintenanceRequests![index]
-                                                    .longitude!)),
+                                                    .longitude!),
                                             builder: (context, snapshot) {
                                               if (snapshot.connectionState ==
                                                   ConnectionState.waiting) {
@@ -193,6 +203,7 @@ class _ShowOrdersBodyState extends State<ShowOrdersBody> {
                                                 return Text(
                                                   '${snapshot.data}',
                                                   style: const TextStyle(
+                                                      fontSize: 12,
                                                       color: Colors.black,
                                                       fontWeight:
                                                           FontWeight.bold),

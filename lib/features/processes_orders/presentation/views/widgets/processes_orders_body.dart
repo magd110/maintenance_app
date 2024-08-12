@@ -44,7 +44,7 @@ class _ProcessesOrdersBodyState extends State<ProcessesOrdersBody> {
             child: Column(children: [
               SizedBox(
                 width: size.width,
-                height: size.height * 0.15,
+                height: size.height * 0.2,
                 child: ClipPath(
                   clipper: HeaderClipper(),
                   child: Container(

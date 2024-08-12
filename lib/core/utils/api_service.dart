@@ -8,7 +8,7 @@ class ApiService {
 
   ApiService(this._dio);
 
-  final String _baseUrl = 'http://10.0.2.2:8000/api/';
+  final String _baseUrl = 'http://localhost:8000/api/';
 
   Future<Map<String, dynamic>> postForRegister(
       {required String endPoint,
@@ -132,12 +132,8 @@ class ApiService {
   }) async {
     var response = await _dio.post(
       '$_baseUrl$endPoint',
-      data: {
-        "consumable_parts": consumableParts,
-        "repairs": repairs,
-        "id":id
-      },
-       options: Options(
+      data: {"consumable_parts": consumableParts, "repairs": repairs, "id": id},
+      options: Options(
         headers: {
           'Authorization': 'Bearer $token',
         },
