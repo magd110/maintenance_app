@@ -37,125 +37,127 @@ class _ProcessesOrdersBodyState extends State<ProcessesOrdersBody> {
     return Scaffold(body:
         BlocBuilder<UpdateRequestByWorkerCubit, UpdateRequestByWorkerState>(
       builder: (context, state) {
-        return Container(
-            decoration: const BoxDecoration(
-              color: Colors.white, // Set the background color
-            ),
-            child: Column(children: [
-              SizedBox(
-                width: size.width,
-                height: size.height * 0.2,
-                child: ClipPath(
-                  clipper: HeaderClipper(),
-                  child: Container(
-                    height: size.height,
-                    width: size.width,
-                    color: Colors.blue,
-                    child: Center(
-                      child: Text(
-                        'Maintenance',
-                        style: TextStyle(
-                          fontSize: 35.0,
-                          fontWeight: FontWeight.w700,
-                          fontStyle: FontStyle.italic,
-                          color: Colors.blue[800],
-                          shadows: [
-                            Shadow(
-                              offset: const Offset(2.0, 2.0),
-                              blurRadius: 3.0,
-                              color: Colors.grey[500]!,
-                            ),
-                          ],
+        return SingleChildScrollView(
+          child: Container(
+              decoration: const BoxDecoration(
+                color: Colors.white, // Set the background color
+              ),
+              child: Column(children: [
+                SizedBox(
+                  width: size.width,
+                  height: size.height * 0.2,
+                  child: ClipPath(
+                    clipper: HeaderClipper(),
+                    child: Container(
+                      height: size.height,
+                      width: size.width,
+                      color: Colors.blue,
+                      child: Center(
+                        child: Text(
+                          'Maintenance',
+                          style: TextStyle(
+                            fontSize: 35.0,
+                            fontWeight: FontWeight.w700,
+                            fontStyle: FontStyle.italic,
+                            color: Colors.blue[800],
+                            shadows: [
+                              Shadow(
+                                offset: const Offset(2.0, 2.0),
+                                blurRadius: 3.0,
+                                color: Colors.grey[500]!,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
                   ),
                 ),
-              ),
-              SingleChildScrollView(
-                child: Form(
-                  key: formKey,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.only(right: 5.0, top: 20),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            CustomTextFormFiled(
-                              sizee: 0.8,
-                              controller: consumablePartsController,
-                              label: 'القطع المستهلكة',
-                              keyboardType: TextInputType.phone,
-                            ),
-                            const SizedBox(height: 10),
-                            CustomTextFormFiled(
-                              sizee: 0.8,
-                              controller: repairsController,
-                              label: 'الإصلاحات ',
-                            ),
-                            const SizedBox(height: 10),
-                          ],
+                SingleChildScrollView(
+                  child: Form(
+                    key: formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.only(right: 5.0, top: 20),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              CustomTextFormFiled(
+                                sizee: 0.8,
+                                controller: consumablePartsController,
+                                label: 'القطع المستهلكة',
+                                keyboardType: TextInputType.phone,
+                              ),
+                              const SizedBox(height: 10),
+                              CustomTextFormFiled(
+                                sizee: 0.8,
+                                controller: repairsController,
+                                label: 'الإصلاحات ',
+                              ),
+                              const SizedBox(height: 10),
+                            ],
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(top: size.height * 0.4),
-                        child: Center(
-                            child: SizedBox(
-                          width: size.width * 0.5,
-                          height: size.height * 0.1,
-                          child: state is UpdateRequestByWorkerLoadingState
-                              ? const CustomProgressIndicator()
-                              : TextButtonn(
-                                  label: "إنهاء طلب الصيانة",
-                                  onPressed: () async {
-                                    if (formKey.currentState!.validate()) {
-                                      await BlocProvider.of<
-                                                  UpdateRequestByWorkerCubit>(
-                                              context)
-                                          .updateRequest(
-                                        endPoint: 'updateRequestByWorker',
-                                        token: prefs.getString('token_worker')!,
-                                        consumableParts:
-                                            consumablePartsController.text,
-                                        repairs: repairsController.text,
-                                        id: widget.id,
-                                      );
-                                    }
-                                  },
-                                  backGroundColor: Colors.blue.shade700,
-                                ),
-                        )),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      if (state is UpdateRequestByWorkerSuccessState)
-                        Center(
-                          child: Text(
-                            state.updateRequestByWorkerModel.message!,
-                            style: const TextStyle(
-                              color: Colors.green,
-                              fontWeight: FontWeight.bold,
+                        Padding(
+                          padding: EdgeInsets.only(top: size.height * 0.4),
+                          child: Center(
+                              child: SizedBox(
+                            width: size.width * 0.5,
+                            height: size.height * 0.1,
+                            child: state is UpdateRequestByWorkerLoadingState
+                                ? const CustomProgressIndicator()
+                                : TextButtonn(
+                                    label: "إنهاء طلب الصيانة",
+                                    onPressed: () async {
+                                      if (formKey.currentState!.validate()) {
+                                        await BlocProvider.of<
+                                                    UpdateRequestByWorkerCubit>(
+                                                context)
+                                            .updateRequest(
+                                          endPoint: 'updateRequestByWorker',
+                                          token: prefs.getString('token_worker')!,
+                                          consumableParts:
+                                              consumablePartsController.text,
+                                          repairs: repairsController.text,
+                                          id: widget.id,
+                                        );
+                                      }
+                                    },
+                                    backGroundColor: Colors.blue.shade700,
+                                  ),
+                          )),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        if (state is UpdateRequestByWorkerSuccessState)
+                          Center(
+                            child: Text(
+                              state.updateRequestByWorkerModel.message!,
+                              style: const TextStyle(
+                                color: Colors.green,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                          ),
-                        )
-                      else if (state is UpdateRequestByWorkerFailureState)
-                        Center(
-                          child: Text(
-                            state.errorMessage,
-                            style: const TextStyle(
-                              color: Colors.red,
-                              fontWeight: FontWeight.bold,
+                          )
+                        else if (state is UpdateRequestByWorkerFailureState)
+                          Center(
+                            child: Text(
+                              state.errorMessage,
+                              style: const TextStyle(
+                                color: Colors.red,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                          ),
-                        )
-                    ],
+                          )
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ]));
+              ])),
+        );
       },
     ));
   }
