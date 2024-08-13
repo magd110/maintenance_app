@@ -8,6 +8,7 @@ import 'package:maintenance_app1/core/utils/service_locator.dart';
 import 'package:maintenance_app1/core/utils/shared_preference_store.dart';
 import 'package:maintenance_app1/features/auht_worker/presentation/views/login_for_worker.dart';
 import 'package:maintenance_app1/features/auth/presentation/views/login_page.dart';
+import 'package:maintenance_app1/features/auth/presentation/views/user_type_selection_page.dart';
 import 'package:maintenance_app1/features/home_page_for_customer/presentation/views/home_page_for_customer.dart';
 import 'package:maintenance_app1/firebase_options.dart';
 
@@ -38,7 +39,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginForWorkerPage(),
+      home:UserTypeSelectionPage(),
+      // LoginForWorkerPage(),
     );
   }
 }
