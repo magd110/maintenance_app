@@ -40,7 +40,7 @@ class TextButtonIcon extends StatelessWidget {
           },
           label: Text(
             data,
-            style: TextStyle(
+            style: const TextStyle(
                 color: Colors.white, fontWeight: FontWeight.bold, fontSize: 15),
           )),
     );

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
 import 'package:maintenance_app1/features/auth/presentation/views/widgets/text_button_icon.dart';
 
 class UserTypeSelectionPageBody extends StatelessWidget {
@@ -12,7 +12,7 @@ class UserTypeSelectionPageBody extends StatelessWidget {
       body: Column(
         children: [
           Expanded(
-            child: Container(
+            child: SizedBox(
               height: size.height * 0.7,
               child: Container(
                 decoration: const BoxDecoration(
@@ -29,9 +29,9 @@ class UserTypeSelectionPageBody extends StatelessWidget {
           Container(
             height: size.height * 0.3,
             width: size.width,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
                 color: Colors.indigo,
-                borderRadius: const BorderRadius.only(
+                borderRadius: BorderRadius.only(
                     topLeft: Radius.elliptical(30, 30),
                     topRight: Radius.elliptical(30, 30))),
             child: Column(
@@ -41,18 +41,18 @@ class UserTypeSelectionPageBody extends StatelessWidget {
                   child: Container(
                     height: size.height * 0.05,
                     width: size.width * 0.6,
-                    child: Center(
-                      child: Text(
-                        "تسجيل الدخول",
-                        style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.bold),
-                      ),
-                    ),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(
                         color: Colors.white, // اللون المحدد هنا
                         width: 2.0, // عرض الحدود
+                      ),
+                    ),
+                    child: const Center(
+                      child: Text(
+                        "تسجيل الدخول",
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),
@@ -64,26 +64,26 @@ class UserTypeSelectionPageBody extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Container(
-                          decoration: BoxDecoration(color: Colors.white),
+                          decoration: const BoxDecoration(color: Colors.white),
                           height: 2,
                         ),
                       ),
-                      Text(
+                      const Text(
                         "       ",
                       ),
                       Expanded(
                         child: Container(
-                          decoration: BoxDecoration(color: Colors.white),
+                          decoration: const BoxDecoration(color: Colors.white),
                           height: 2,
                         ),
                       ),
                     ],
                   ),
                 ),
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    TextButtonIcon(iconData: Icons.engineering, data: "عامل  "),
+                    TextButtonIcon(iconData: Icons.engineering, data: "عامل  ",),
                     TextButtonIcon(iconData: Icons.person, data: "زبون  "),
                   ],
                 )
