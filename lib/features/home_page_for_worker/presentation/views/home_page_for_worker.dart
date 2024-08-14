@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:maintenance_app1/features/add_order/presentation/views/show_electrical.dart';
 import 'package:maintenance_app1/features/home_page_for_customer/presentation/views/widgets/test_widget.dart';
 import 'package:maintenance_app1/features/show_orders/presentation/view/show_ordres.dart';
+import 'package:maintenance_app1/features/vacation%20_request/presentation/view/vacation_request.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 class HomePageForWorker extends StatefulWidget {
@@ -22,8 +23,8 @@ class _HomePageForWorkerState extends State<HomePageForWorker> {
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
       PersistentBottomNavBarItem(
-        icon: const Icon(Icons.home),
-        title: ("Home"),
+        icon: const Icon(Icons.build),
+        title: ("طلبات الصيانة"),
         activeColorPrimary: Colors.blueAccent,
         inactiveColorPrimary: Colors.white,
         scrollController: _scrollController1,
@@ -31,13 +32,15 @@ class _HomePageForWorkerState extends State<HomePageForWorker> {
           initialRoute: "/",
           routes: {
             "/first": (final context) => const ShowOrdresPage(),
-            "/second": (final context) => const TestingWidget(),
+            "/second": (final context) => const VacationRequest(),
           },
         ),
       ),
       PersistentBottomNavBarItem(
-        icon: const Icon(Icons.settings),
-        title: ("Test"),
+        icon: const Icon(
+          Icons.person_off,
+        ),
+        title: ("طلب اجازة"),
         activeColorPrimary: Colors.blueAccent,
         inactiveColorPrimary: Colors.white,
         scrollController: _scrollController2,

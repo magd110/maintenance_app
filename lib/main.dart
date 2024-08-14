@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home:UserTypeSelectionPage(),
+      home: UserTypeSelectionPage(),
       // LoginForWorkerPage(),
     );
   }
