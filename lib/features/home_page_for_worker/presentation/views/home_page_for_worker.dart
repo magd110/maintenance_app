@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:maintenance_app1/features/add_order/presentation/views/show_electrical.dart';
-import 'package:maintenance_app1/features/home_page_for_customer/presentation/views/widgets/test_widget.dart';
 import 'package:maintenance_app1/features/show_orders/presentation/view/show_ordres.dart';
-import 'package:maintenance_app1/features/vacation_request/presentation/view/vacation_request.dart';
+import 'package:maintenance_app1/features/vacation%20_request/presentation/view/vacation_request.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 class HomePageForWorker extends StatefulWidget {
@@ -14,10 +12,10 @@ class HomePageForWorker extends StatefulWidget {
 
 class _HomePageForWorkerState extends State<HomePageForWorker> {
   late PersistentTabController _controller;
-  ScrollController _scrollController1 = ScrollController();
-  ScrollController _scrollController2 = ScrollController();
+  final ScrollController _scrollController1 = ScrollController();
+  final ScrollController _scrollController2 = ScrollController();
   List<Widget> _buildScreens() {
-    return [const ShowOrdresPage(), const TestingWidget()];
+    return [const ShowOrdresPage(), const VacationRequest()];
   }
 
   List<PersistentBottomNavBarItem> _navBarsItems() {
@@ -32,7 +30,7 @@ class _HomePageForWorkerState extends State<HomePageForWorker> {
           initialRoute: "/",
           routes: {
             "/first": (final context) => const ShowOrdresPage(),
-            "/second": (final context) => const VacationRequest(),
+            "/second": (final context) => const VacationRequest()
           },
         ),
       ),

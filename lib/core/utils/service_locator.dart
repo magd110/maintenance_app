@@ -9,6 +9,7 @@ import 'package:maintenance_app1/features/auth/data/repos/login/login_repo_impl.
 import 'package:maintenance_app1/features/auth/data/repos/register/register_repo_impl.dart';
 import 'package:maintenance_app1/features/processes_orders/data/repos/update_request_by_worker_repo_impl.dart';
 import 'package:maintenance_app1/features/show_orders/data/repos/show_orders_repo_impl.dart';
+import 'package:maintenance_app1/features/vacation%20_request/data/repos/request_leave_repo_impl.dart';
 
 final getIt = GetIt.instance;
 
@@ -57,6 +58,14 @@ void setupServiceLocator() {
 
   getIt.registerSingleton(
     UpdateRequestByWorkerRepoImpl(
+      getIt.get<ApiService>(),
+    ),
+  );
+
+
+
+   getIt.registerSingleton(
+    RequestLeaveRepoImpl(
       getIt.get<ApiService>(),
     ),
   );
