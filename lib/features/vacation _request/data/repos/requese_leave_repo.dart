@@ -7,5 +7,6 @@ abstract class RequestLeaveRepo {
     required String endPoint,
     required String token,
     required String reason,
+    required String idapplication,
   });
 }

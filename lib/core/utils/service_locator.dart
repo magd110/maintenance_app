@@ -7,7 +7,9 @@ import 'package:maintenance_app1/features/add_order/data/repos/store_request_by_
 import 'package:maintenance_app1/features/auht_worker/data/repos/login_for_worker_repo_impl.dart';
 import 'package:maintenance_app1/features/auth/data/repos/login/login_repo_impl.dart';
 import 'package:maintenance_app1/features/auth/data/repos/register/register_repo_impl.dart';
+import 'package:maintenance_app1/features/information_worker/data/repos/update_password_repo_impl.dart';
 import 'package:maintenance_app1/features/processes_orders/data/repos/update_request_by_worker_repo_impl.dart';
+import 'package:maintenance_app1/features/resignation_request/data/repos/resignation_request_repo_impl.dart';
 import 'package:maintenance_app1/features/show_orders/data/repos/show_orders_repo_impl.dart';
 import 'package:maintenance_app1/features/show_requsts/data/repos/rating_team_repo/rating_team_repo_impl.dart';
 import 'package:maintenance_app1/features/show_requsts/data/repos/show_requests_repo/show_requests_repo_impl.dart';
@@ -82,6 +84,19 @@ void setupServiceLocator() {
 
   getIt.registerSingleton(
     RatingTeamRepoImpl(
+      getIt.get<ApiService>(),
+    ),
+  );
+
+  getIt.registerSingleton(
+    ResignationRequestRepoImpl(
+      getIt.get<ApiService>(),
+    ),
+  );
+
+
+  getIt.registerSingleton(
+    UpdatePasswordRepoImpl(
       getIt.get<ApiService>(),
     ),
   );

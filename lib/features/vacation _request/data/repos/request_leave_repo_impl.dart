@@ -10,15 +10,18 @@ class RequestLeaveRepoImpl implements RequestLeaveRepo {
 
   RequestLeaveRepoImpl(this._apiService);
   @override
-  Future<Either<Failure, RequestLeaveModel>> requeseLeave(
-      {required String endPoint,
-      required String token,
-      required String reason}) async {
+  Future<Either<Failure, RequestLeaveModel>> requeseLeave({
+    required String endPoint,
+    required String token,
+    required String reason,
+    required String idapplication,
+  }) async {
     try {
       var data = await _apiService.requestLeave(
         endPoint: endPoint,
         token: token,
         reason: reason,
+        idapplication: idapplication,
       );
       RequestLeaveModel requestLeaveModel = RequestLeaveModel.fromJson(data);
       return right(requestLeaveModel);
