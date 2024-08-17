@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:maintenance_app1/core/widgets/custom_text_form_field.dart';
@@ -15,12 +16,53 @@ class _ResignationRequestBodyState extends State<ResignationRequestBody> {
   final TextEditingController reasonController = TextEditingController();
 
   var formKey = GlobalKey<FormState>();
+  bool _isPermissionRequestInProgress = false;
+    String? myToken;
+
 
   @override
   void dispose() {
     reasonController.dispose();
 
     super.dispose();
+  }
+   Future<void> _requestPermission() async {
+    if (_isPermissionRequestInProgress) {
+      return; // إذا كان هناك طلب قيد التشغيل بالفعل، نتوقف هنا
+    }
+
+    setState(() {
+      _isPermissionRequestInProgress = true;
+    });
+
+    try {
+      FirebaseMessaging messaging = FirebaseMessaging.instance;
+      NotificationSettings settings = await messaging.requestPermission(
+        alert: true,
+        badge: true,
+        sound: true,
+      );
+
+      if (settings.authorizationStatus == AuthorizationStatus.authorized) {
+        print("User granted permission");
+      } else {
+        print("User declined or has not accepted permission");
+      }
+
+      FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+        print(
+            "title: ${message.notification?.title}|body:${message.notification?.body}");
+      });
+
+      myToken = await FirebaseMessaging.instance.getToken();
+      print("MyToken: $myToken");
+    } catch (e) {
+      print("Error requesting permissions: $e");
+    } finally {
+      setState(() {
+        _isPermissionRequestInProgress = false; // نحدد أن الطلب انتهى
+      });
+    }
   }
 
   @override
