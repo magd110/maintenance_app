@@ -204,4 +204,24 @@ class ApiService {
 
     return response.data;
   }
+
+  Future<Map<String, dynamic>> resignationRequest({
+    required String endPoint,
+    required String token,
+    required String reason,
+  }) async {
+    var response = await _dio.post(
+      '$_baseUrl$endPoint',
+      data: {
+        'reason':reason
+      },
+      options: Options(
+        headers: {
+          'Authorization': 'Bearer $token',
+        },
+      ),
+    );
+
+    return response.data;
+  }
 }
