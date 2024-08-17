@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:maintenance_app1/features/home_page_for_worker/presentation/views/more_page_for_worker.dart';
 import 'package:maintenance_app1/features/show_orders/presentation/view/show_ordres.dart';
 import 'package:maintenance_app1/features/vacation%20_request/presentation/view/vacation_request.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
@@ -15,7 +16,7 @@ class _HomePageForWorkerState extends State<HomePageForWorker> {
   final ScrollController _scrollController1 = ScrollController();
   final ScrollController _scrollController2 = ScrollController();
   List<Widget> _buildScreens() {
-    return [const ShowOrdresPage(), const VacationRequest()];
+    return [const ShowOrdresPage(), MorePageForWorker()];
   }
 
   List<PersistentBottomNavBarItem> _navBarsItems() {
@@ -35,10 +36,8 @@ class _HomePageForWorkerState extends State<HomePageForWorker> {
         ),
       ),
       PersistentBottomNavBarItem(
-        icon: const Icon(
-          Icons.person_off,
-        ),
-        title: ("طلب اجازة"),
+        icon: Icon(Icons.more_vert),
+        title: ("المزيد"),
         activeColorPrimary: Colors.blueAccent,
         inactiveColorPrimary: Colors.white,
         scrollController: _scrollController2,
