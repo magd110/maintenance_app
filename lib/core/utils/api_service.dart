@@ -8,8 +8,8 @@ class ApiService {
 
   ApiService(this._dio);
   // Majd comment my _baseUrl , don't replace it or delete it
-  final String _baseUrl = 'http://10.0.2.2:8000/api/';
-  //  final String _baseUrl = 'http://localhost:8000/api/';
+  //final String _baseUrl = 'http://10.0.2.2:8000/api/';
+  final String _baseUrl = 'http://localhost:8000/api/';
 
   Future<Map<String, dynamic>> postForRegister(
       {required String endPoint,
@@ -152,10 +152,7 @@ class ApiService {
   }) async {
     var response = await _dio.post(
       '$_baseUrl$endPoint',
-      data: {
-        "reason": reason,
-        "idapplication":idapplication
-      },
+      data: {"reason": reason, "idapplication": idapplication},
       options: Options(
         headers: {
           'Authorization': 'Bearer $token',
