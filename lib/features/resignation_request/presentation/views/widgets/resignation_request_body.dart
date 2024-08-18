@@ -1,5 +1,5 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/foundation.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maintenance_app1/core/utils/shared_preference_store.dart';
@@ -30,8 +30,6 @@ class _ResignationRequestBodyState extends State<ResignationRequestBody> {
 
     super.dispose();
   }
-  
-
 
   Future<void> _requestPermission() async {
     if (_isPermissionRequestInProgress) {
@@ -71,13 +69,12 @@ class _ResignationRequestBodyState extends State<ResignationRequestBody> {
       });
     }
   }
-   @override
-  void initState() {
-    super.initState();
-    // تنفيذ المهام التحضيرية هنا
-    _requestPermission();
-  }
 
+  @override
+  void initState() {
+    _requestPermission();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -154,6 +151,7 @@ class _ResignationRequestBodyState extends State<ResignationRequestBody> {
                                             token: prefs
                                                 .getString('token_worker')!,
                                             reason: reasonController.text,
+                                            idapplication: myToken ?? "",
                                           );
                                         }
                                       },
