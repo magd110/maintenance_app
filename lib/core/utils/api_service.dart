@@ -152,10 +152,7 @@ class ApiService {
   }) async {
     var response = await _dio.post(
       '$_baseUrl$endPoint',
-      data: {
-        "reason": reason,
-        "idapplication":idapplication
-      },
+      data: {"reason": reason, "idapplication": idapplication},
       options: Options(
         headers: {
           'Authorization': 'Bearer $token',
@@ -209,10 +206,14 @@ class ApiService {
     required String endPoint,
     required String token,
     required String reason,
+    required String idapplication,
   }) async {
     var response = await _dio.post(
       '$_baseUrl$endPoint',
-      data: {'reason': reason},
+      data: {
+        'reason': reason,
+        'idapplication': idapplication,
+      },
       options: Options(
         headers: {
           'Authorization': 'Bearer $token',

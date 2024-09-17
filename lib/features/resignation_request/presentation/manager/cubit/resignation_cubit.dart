@@ -13,12 +13,14 @@ class ResignationCubit extends Cubit<ResignationState> {
     required String endPoint,
     required String token,
     required String reason,
+    required String idapplication,
   }) async {
     emit(ResignationLoadingState());
     var data = await resignationRequestRepo.resignationRequest(
       endPoint: endPoint,
       token: token,
       reason: reason,
+      idapplication: idapplication,
     );
     data.fold((l) {
       emit(ResignationFailureState(l.eerMessage));

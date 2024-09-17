@@ -10,15 +10,18 @@ class ResignationRequestRepoImpl implements ResignationRequestRepo {
 
   ResignationRequestRepoImpl(this._apiService);
   @override
-  Future<Either<Failure, ResignationModel>> resignationRequest(
-      {required String endPoint,
-      required String token,
-      required String reason}) async {
+  Future<Either<Failure, ResignationModel>> resignationRequest({
+    required String endPoint,
+    required String token,
+    required String reason,
+    required String idapplication,
+  }) async {
     try {
       var data = await _apiService.resignationRequest(
         endPoint: endPoint,
         token: token,
         reason: reason,
+        idapplication: idapplication
       );
       ResignationModel resignationModel = ResignationModel.fromJson(data);
       return right(resignationModel);

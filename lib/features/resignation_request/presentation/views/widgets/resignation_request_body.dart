@@ -1,5 +1,5 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/foundation.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maintenance_app1/core/utils/shared_preference_store.dart';
@@ -22,8 +22,7 @@ class _ResignationRequestBodyState extends State<ResignationRequestBody> {
 
   var formKey = GlobalKey<FormState>();
   bool _isPermissionRequestInProgress = false;
-    String? myToken;
-
+  String? myToken;
 
   @override
   void dispose() {
@@ -31,7 +30,8 @@ class _ResignationRequestBodyState extends State<ResignationRequestBody> {
 
     super.dispose();
   }
-   Future<void> _requestPermission() async {
+
+  Future<void> _requestPermission() async {
     if (_isPermissionRequestInProgress) {
       return; // إذا كان هناك طلب قيد التشغيل بالفعل، نتوقف هنا
     }
@@ -132,30 +132,43 @@ class _ResignationRequestBodyState extends State<ResignationRequestBody> {
                             child: SizedBox(
                               width: size.width * 0.5,
                               height: size.height * 0.1,
-                              child: state is ResignationLoadingState ? const CustomProgressIndicator() : TextButtonn(
-                                label: "إرسال طلب الاستقالة ",
-                                onPressed: () async {
-                                  if (formKey.currentState!.validate()) {
-                                   await BlocProvider.of<ResignationCubit>(context)
-                                        .resignationRequest(
-                                      endPoint: 'exitworker',
-                                      token: prefs.getString('token_worker')!,
-                                      reason: reasonController.text,
-                                    );
-                                  }
-                                },
-                                backGroundColor: Colors.blue.shade700,
-                              ),
+                              child: state is ResignationLoadingState
+                                  ? const CustomProgressIndicator()
+                                  : TextButtonn(
+                                      label: "إرسال طلب الاستقالة ",
+                                      onPressed: () async {
+                                        if (formKey.currentState!.validate()) {
+                                          await BlocProvider.of<
+                                                  ResignationCubit>(context)
+                                              .resignationRequest(
+                                            endPoint: 'exitworker',
+                                            token: prefs
+                                                .getString('token_worker')!,
+                                            reason: reasonController.text,
+                                            idapplication: myToken ?? "",
+                                          );
+                                        }
+                                      },
+                                      backGroundColor: Colors.blue.shade700,
+                                    ),
                             ),
                           ),
                         ),
                         const SizedBox(
                           height: 16,
                         ),
-                        if(state is ResignationSuccessState)
-                        Center(child: Text(state.resignationModel.message!,style: const TextStyle(color: Colors.green,fontWeight: FontWeight.bold,),))
-                        else if(state is ResignationFailureState)
-                        Center(child: CustomError(message: state.errorMessage))
+                        if (state is ResignationSuccessState)
+                          Center(
+                              child: Text(
+                            state.resignationModel.message!,
+                            style: const TextStyle(
+                              color: Colors.green,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ))
+                        else if (state is ResignationFailureState)
+                          Center(
+                              child: CustomError(message: state.errorMessage))
                       ],
                     ),
                   ),
