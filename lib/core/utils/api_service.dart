@@ -151,7 +151,9 @@ class ApiService {
   }) async {
     var response = await _dio.post(
       '$_baseUrl$endPoint',
-      data: {"reason": reason,},
+      data: {
+        "reason": reason,
+      },
       options: Options(
         headers: {
           'Authorization': 'Bearer $token',
@@ -159,7 +161,47 @@ class ApiService {
       ),
     );
 
-    
+    return response.data;
+  }
+
+  Future<List<dynamic>> showRequest({
+    required String endPoint,
+    required String token,
+  }) async {
+    var response = await _dio.get(
+      '$_baseUrl$endPoint',
+      options: Options(
+        headers: {"Authorization": "Bearer $token"},
+        method: "GET",
+      ),
+    );
+
+    return response.data;
+  }
+
+
+
+  Future<Map<String, dynamic>> ratingTeam({
+    required String endPoint,
+    required String token,
+    required String note,
+    required double numberOfStar,
+    required int teamId,
+  }) async {
+    var response = await _dio.post(
+      '$_baseUrl$endPoint',
+      data: {
+        "star": numberOfStar,
+        "maintenance_team_id": teamId,
+        "note":note,
+      },
+      options: Options(
+        headers: {
+          'Authorization': 'Bearer $token',
+        },
+      ),
+    );
+
     return response.data;
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:maintenance_app1/features/add_order/presentation/views/show_electrical.dart';
 import 'package:maintenance_app1/features/home_page_for_customer/presentation/views/widgets/test_widget.dart';
+import 'package:maintenance_app1/features/show_requsts/presentation/views/view_requsts.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 class HomePageForCustomer extends StatefulWidget {
@@ -12,10 +13,10 @@ class HomePageForCustomer extends StatefulWidget {
 
 class _HomePageForCustomerState extends State<HomePageForCustomer> {
   late PersistentTabController _controller;
-  ScrollController _scrollController1 = ScrollController();
-  ScrollController _scrollController2 = ScrollController();
+  final ScrollController _scrollController1 = ScrollController();
+  final ScrollController _scrollController2 = ScrollController();
   List<Widget> _buildScreens() {
-    return [const ShowElectrical(), const TestingWidget()];
+    return [const ShowElectrical(), const ShowRequsts()];
   }
 
   List<PersistentBottomNavBarItem> _navBarsItems() {
@@ -30,7 +31,7 @@ class _HomePageForCustomerState extends State<HomePageForCustomer> {
           initialRoute: "/",
           routes: {
             "/first": (final context) => const ShowElectrical(),
-            "/second": (final context) => const TestingWidget(),
+            "/second": (final context) => const ShowRequsts(),
           },
         ),
       ),
