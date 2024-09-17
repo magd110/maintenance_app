@@ -12,12 +12,14 @@ class RequestLeaveCubit extends Cubit<RequestLeaveState> {
   Future<void> requstLeave(
       {required String token,
       required String endPoint,
-      required String reason}) async {
+      required String reason,
+      required String idapplication,
+      }) async {
     emit(RequestLeaveLoadingState());
     var data = await requestLeaveRepo.requeseLeave(
       endPoint: endPoint,
       token: token,
-      reason: reason,
+      reason: reason, idapplication: idapplication,
     );
 
     data.fold((l) {
