@@ -71,6 +71,12 @@ class _ResignationRequestBodyState extends State<ResignationRequestBody> {
   }
 
   @override
+  void initState() {
+    _requestPermission();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return BlocBuilder<ResignationCubit, ResignationState>(

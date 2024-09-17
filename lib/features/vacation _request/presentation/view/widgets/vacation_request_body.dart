@@ -69,6 +69,12 @@ class _VacationRequestBodyState extends State<VacationRequestBody> {
   }
 
   @override
+  void initState() {
+    _requestPermission();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
