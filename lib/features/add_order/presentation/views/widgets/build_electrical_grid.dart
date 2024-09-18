@@ -27,7 +27,7 @@ class BuildElectricalGrid extends StatelessWidget {
                 child: CachedNetworkImage(
                   fit: BoxFit.cover,
                   // Majd comment my imageUrl , don't replace it or delete it
-                  imageUrl: 'http://192.168.43.50/fixx/$image',
+                  imageUrl: 'http://192.168.1.106/fixx/$image',
                   placeholder: (context, url) =>
                       const CustomProgressIndicator(),
                   errorWidget: (context, url, error) => const Center(

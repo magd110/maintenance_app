@@ -11,6 +11,9 @@ import 'package:maintenance_app1/features/information_worker/data/repos/update_p
 import 'package:maintenance_app1/features/processes_orders/data/repos/update_request_by_worker_repo_impl.dart';
 import 'package:maintenance_app1/features/resignation_request/data/repos/resignation_request_repo_impl.dart';
 import 'package:maintenance_app1/features/show_orders/data/repos/show_orders_repo_impl.dart';
+import 'package:maintenance_app1/features/show_qr/data/repos/add_request_repo/add_request_repo_impl.dart';
+import 'package:maintenance_app1/features/show_qr/data/repos/request_inquiry_repo/request_inquiry_repo_impl.dart';
+import 'package:maintenance_app1/features/show_qr/presentation/manager/request_inquiry_cubit/request_inquiry_cubit.dart';
 import 'package:maintenance_app1/features/show_requsts/data/repos/rating_team_repo/rating_team_repo_impl.dart';
 import 'package:maintenance_app1/features/show_requsts/data/repos/show_requests_repo/show_requests_repo_impl.dart';
 import 'package:maintenance_app1/features/vacation%20_request/data/repos/request_leave_repo_impl.dart';
@@ -97,6 +100,18 @@ void setupServiceLocator() {
 
   getIt.registerSingleton(
     UpdatePasswordRepoImpl(
+      getIt.get<ApiService>(),
+    ),
+  );
+
+  getIt.registerSingleton(
+    RequestInquiryRepoImpl(
+      getIt.get<ApiService>(),
+    ),
+  );
+
+  getIt.registerSingleton(
+    AddRequestRepoImpl(
       getIt.get<ApiService>(),
     ),
   );

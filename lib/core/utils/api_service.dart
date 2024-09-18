@@ -243,4 +243,71 @@ class ApiService {
 
     return response.data;
   }
+
+  Future<List<dynamic>> requestInquiry({
+    required String endPoint,
+    required String token,
+    required XFile image,
+    required int check,
+  }) async {
+    String fileName = image.path.split('/').last;
+
+    FormData data = FormData.fromMap({
+      "QR_code": await MultipartFile.fromFile(
+        image.path,
+        filename: fileName,
+      ),
+      'check': check
+    });
+    var response = await _dio.post(
+      '$_baseUrl$endPoint',
+      data: data,
+      options: Options(
+        headers: {
+          'Authorization': 'Bearer $token',
+        },
+      ),
+    );
+
+    return response.data;
+  }
+
+  Future<Map<String, dynamic>> addRequest({
+    required String endPoint,
+    required String token,
+    required XFile image,
+    required int check,
+    required String days,
+    required String number,
+    required double latitude,
+    required double longitude,
+    required String notes,
+    required String details,
+  }) async {
+    String fileName = image.path.split('/').last;
+    FormData data = FormData.fromMap({
+      "QR_code": await MultipartFile.fromFile(
+        image.path,
+        filename: fileName,
+      ),
+      'check': check,
+      'free_day[]': days,
+      'number': number,
+      'latitude': latitude,
+      'longitude': longitude,
+      'notes': notes,
+      'request_details': details
+    });
+    var response = await _dio.post(
+      '$_baseUrl$endPoint',
+      data: data,
+      options: Options(
+        headers: {
+          'Authorization': 'Bearer $token',
+        },
+      ),
+    );
+
+    return response.data;
+  }
 }

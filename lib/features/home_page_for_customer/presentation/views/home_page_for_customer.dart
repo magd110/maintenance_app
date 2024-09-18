@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:maintenance_app1/features/add_order/presentation/views/show_electrical.dart';
-import 'package:maintenance_app1/features/home_page_for_customer/presentation/views/widgets/test_widget.dart';
+import 'package:maintenance_app1/features/show_qr/presentation/views/widgets/show_qr.dart';
 import 'package:maintenance_app1/features/show_requsts/presentation/views/view_requsts.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
@@ -13,41 +13,34 @@ class HomePageForCustomer extends StatefulWidget {
 
 class _HomePageForCustomerState extends State<HomePageForCustomer> {
   late PersistentTabController _controller;
-  final ScrollController _scrollController1 = ScrollController();
-  final ScrollController _scrollController2 = ScrollController();
+
   List<Widget> _buildScreens() {
-    return [const ShowElectrical(), const ShowRequsts()];
+    return [
+      const ShowElectrical(),
+      const ShowRequsts(),
+      const ShowQr(),
+    ];
   }
 
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
       PersistentBottomNavBarItem(
-        icon: const Icon(Icons.home),
-        title: ("Home"),
+        icon: const Icon(Icons.electrical_services),
+        title: ("Electrical"),
         activeColorPrimary: Colors.blueAccent,
         inactiveColorPrimary: Colors.white,
-        scrollController: _scrollController1,
-        routeAndNavigatorSettings: RouteAndNavigatorSettings(
-          initialRoute: "/",
-          routes: {
-            "/first": (final context) => const ShowElectrical(),
-            "/second": (final context) => const ShowRequsts(),
-          },
-        ),
       ),
       PersistentBottomNavBarItem(
-        icon: const Icon(Icons.settings),
-        title: ("Test"),
+        icon: const Icon(Icons.list_alt),
+        title: ("Requests"),
         activeColorPrimary: Colors.blueAccent,
         inactiveColorPrimary: Colors.white,
-        scrollController: _scrollController2,
-        routeAndNavigatorSettings: const RouteAndNavigatorSettings(
-          initialRoute: "/",
-          routes: {
-            // "/first": (final context) => const MainScreen2(),
-            // "/second": (final context) => const MainScreen3(),
-          },
-        ),
+      ),
+      PersistentBottomNavBarItem(
+        icon: const Icon(Icons.qr_code),
+        title: ("Show QR"),
+        activeColorPrimary: Colors.blueAccent,
+        inactiveColorPrimary: Colors.white,
       ),
     ];
   }
@@ -65,10 +58,9 @@ class _HomePageForCustomerState extends State<HomePageForCustomer> {
       controller: _controller,
       screens: _buildScreens(),
       items: _navBarsItems(),
-      handleAndroidBackButtonPress: true, // Default is true.
-      resizeToAvoidBottomInset:
-          true, // This needs to be true if you want to move up the screen on a non-scrollable screen when keyboard appears. Default is true.
-      stateManagement: true, // Default is true.
+      handleAndroidBackButtonPress: true,
+      resizeToAvoidBottomInset: true,
+      stateManagement: true,
       hideNavigationBarWhenKeyboardAppears: true,
       popBehaviorOnSelectedNavBarItemPress: PopBehavior.all,
       padding: const EdgeInsets.only(top: 8),
@@ -76,12 +68,10 @@ class _HomePageForCustomerState extends State<HomePageForCustomer> {
       isVisible: true,
       animationSettings: const NavBarAnimationSettings(
         navBarItemAnimation: ItemAnimationSettings(
-          // Navigation Bar's items animation properties.
           duration: Duration(milliseconds: 400),
           curve: Curves.ease,
         ),
         screenTransitionAnimation: ScreenTransitionAnimationSettings(
-          // Screen transition animation on change of selected tab.
           animateTabTransition: true,
           duration: Duration(milliseconds: 200),
           screenTransitionAnimationType: ScreenTransitionAnimationType.fadeIn,
@@ -89,8 +79,7 @@ class _HomePageForCustomerState extends State<HomePageForCustomer> {
       ),
       confineToSafeArea: true,
       navBarHeight: kBottomNavigationBarHeight,
-      navBarStyle:
-          NavBarStyle.style3, // Choose the nav bar style with this property
+      navBarStyle: NavBarStyle.style3, // Choose the nav bar style with this property
     );
   }
 }
