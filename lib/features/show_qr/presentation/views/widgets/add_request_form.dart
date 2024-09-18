@@ -25,7 +25,8 @@ class _AddRequestFormState extends State<AddRequestForm> {
   Position? position;
   CameraPosition? kGooglePlex;
   bool _isPermissionRequestInProgress = false;
-  final List<bool> _daysSelected = List.generate(7, (_) => false);
+  // قائمة تحتوي على أيام الأسبوع التي تم اختيارها
+  final List<String> _selectedDays = [];
   var key = GlobalKey<FormState>();
 
   @override
@@ -97,20 +98,25 @@ class _AddRequestFormState extends State<AddRequestForm> {
                       child: Wrap(
                         spacing: 8.0,
                         children: List.generate(7, (index) {
+                          const daysOfWeek = [
+                            'الأحد',
+                            'الإثنين',
+                            'الثلاثاء',
+                            'الأربعاء',
+                            'الخميس',
+                            'الجمعة',
+                            'السبت'
+                          ];
                           return FilterChip(
-                            label: Text([
-                              'الأحد',
-                              'الإثنين',
-                              'الثلاثاء',
-                              'الأربعاء',
-                              'الخميس',
-                              'الجمعة',
-                              'السبت'
-                            ][index]),
-                            selected: _daysSelected[index],
+                           label: Text(daysOfWeek[index]),
+                            selected: _selectedDays.contains(daysOfWeek[index]),
                             onSelected: (bool selected) {
                               setState(() {
-                                _daysSelected[index] = selected;
+                                if (selected) {
+                                  _selectedDays.add(daysOfWeek[index]);
+                                } else {
+                                  _selectedDays.remove(daysOfWeek[index]);
+                                }
                               });
                             },
                           );
@@ -139,7 +145,7 @@ class _AddRequestFormState extends State<AddRequestForm> {
                         : ElevatedButton(
                             onPressed: () async {
                               if (key.currentState!.validate()) {
-                                if (_daysSelected.isNotEmpty &&
+                                if (_selectedDays.isNotEmpty &&
                                     position != null) {
                                   await BlocProvider.of<AddRequestCubit>(
                                           context)
@@ -148,7 +154,7 @@ class _AddRequestFormState extends State<AddRequestForm> {
                                     token: prefs.getString('token')!,
                                     image: widget.image,
                                     check: 1,
-                                    days: _daysSelected.toString(),
+                                    days: _selectedDays.join(', '),
                                     number: _phoneController.text,
                                     latitude: position!.latitude,
                                     longitude: position!.longitude,
