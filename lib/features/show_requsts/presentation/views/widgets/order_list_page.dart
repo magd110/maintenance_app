@@ -29,7 +29,8 @@ class OrderListPage extends StatelessWidget {
                         if (state.requsts[index].requestState == 'Complete') {
                           Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => BlocProvider(
-                              create: (context) => RatingCubit(getIt.get<RatingTeamRepoImpl>()),
+                              create: (context) =>
+                                  RatingCubit(getIt.get<RatingTeamRepoImpl>()),
                               child: RatingTeam(
                                 id: state.requsts[index].teamId!,
                               ),
@@ -57,8 +58,6 @@ class OrderListPage extends StatelessWidget {
                               Text("End Date: ${state.requsts[index].endTime}"),
                               Text(
                                   "Warranty State : ${state.requsts[index].warrantyState}"),
-                              Text(
-                                  "Team: ${state.requsts[index].team?.name ?? ""}"),
                               Text(
                                   "Consumed Parts: ${state.requsts[index].consumableParts}"),
                               Text("Price: ${state.requsts[index].salary}"),
