@@ -15,5 +15,6 @@ abstract class StoreRequestByUserRepo {
     required int id,
     required String endPoint,
     required String token,
+    required String idApplication,
   });
 }

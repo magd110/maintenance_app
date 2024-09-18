@@ -67,6 +67,7 @@ class ApiService {
     required int id,
     required String endPoint,
     required String token,
+    required String idApplication,
   }) async {
     String fileName = image.path.split('/').last;
 
@@ -82,6 +83,7 @@ class ApiService {
       "latitude": latitude,
       "longitude": longitude,
       "elec_id": id,
+      "idapplication":idApplication
     });
 
     var response = await _dio.post('$_baseUrl$endPoint',

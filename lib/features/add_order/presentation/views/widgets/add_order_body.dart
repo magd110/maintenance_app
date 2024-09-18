@@ -342,7 +342,6 @@ class _AddOrderBodyState extends State<AddOrderBodyState> {
                                     child: TextButtonn(
                                       label: "إرسال طلب الصيانة",
                                       onPressed: () async {
-                                       
                                         if (position != null &&
                                             daysController.text.isNotEmpty &&
                                             phoneNumberController
@@ -350,25 +349,23 @@ class _AddOrderBodyState extends State<AddOrderBodyState> {
                                             notesController.text.isNotEmpty &&
                                             detailsController.text.isNotEmpty &&
                                             image != null) {
-                                          BlocProvider.of<StoreRequestByUserCubit>(
+                                          BlocProvider.of<
+                                                      StoreRequestByUserCubit>(
                                                   context)
                                               .storeRequest(
-                                                  image: image!,
-                                                  latitude: position!.latitude,
-                                                  longitude:
-                                                      position!.longitude,
-                                                  phoneNumber:
-                                                      phoneNumberController
-                                                          .text,
-                                                  details:
-                                                      detailsController.text,
-                                                  notes: notesController.text,
-                                                  days: daysController.text,
-                                                  id: widget.id,
-                                                  endPoint:
-                                                      'storeRequestByUser',
-                                                  token: prefs
-                                                      .getString('token')!);
+                                            image: image!,
+                                            latitude: position!.latitude,
+                                            longitude: position!.longitude,
+                                            phoneNumber:
+                                                phoneNumberController.text,
+                                            details: detailsController.text,
+                                            notes: notesController.text,
+                                            days: daysController.text,
+                                            id: widget.id,
+                                            endPoint: 'storeRequestByUser',
+                                            token: prefs.getString('token')!,
+                                            idApplication: myToken!,
+                                          );
                                         }
                                       },
                                       backGroundColor: Colors.blue.shade700,
